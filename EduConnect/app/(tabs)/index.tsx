@@ -11,13 +11,11 @@ const WelcomeScreen = ({ navigation }) => {
           style={styles.logo}
           resizeMode="contain"
         />
-        <Text style={styles.title}>EduConnect</Text>
-        <Text style={styles.tagline}>Aprende, crece, triunfa</Text>
       </View>
 
       <Text style={styles.welcome}>Bienvenido</Text>
       <Text style={styles.description}>
-        Conecta a padres y maestros de manera fácil para un mejor seguimiento de hij@s.
+        Conecta a padres y maestros de manera fácil para un mejor seguimiento de hijos.
       </Text>
 
       <TouchableOpacity
@@ -35,28 +33,19 @@ export default WelcomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#003366', // Azul profundo
+    backgroundColor: '#ffffff', // Fondo blanco
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
   },
   card: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 20,
     alignItems: 'center',
-    marginBottom: 30,
-    width: '100%',
+    marginBottom: 0, // antes estaba en 30
   },
   logo: {
-    width: 100,
-    height: 100,
-    marginBottom: 10,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#000',
+    width: 200,
+    height: 200,
+    marginBottom: 0, // antes estaba en 2
   },
   tagline: {
     fontSize: 14,
@@ -65,17 +54,17 @@ const styles = StyleSheet.create({
   welcome: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#fff',
-    marginBottom: 10,
+    color: '#1883E3', // Azul principal
+    marginBottom: 5,
   },
   description: {
     fontSize: 16,
-    color: '#fff',
+    color: '#000',
     textAlign: 'center',
     marginBottom: 30,
   },
   button: {
-    backgroundColor: '#28a745', // Verde
+    backgroundColor: '#12943E', // Verde secundario
     paddingVertical: 12,
     paddingHorizontal: 30,
     borderRadius: 8,
