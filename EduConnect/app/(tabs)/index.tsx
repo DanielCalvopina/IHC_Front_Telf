@@ -1,77 +1,98 @@
-// WelcomeScreen.js
+import ParallaxScrollView from '@/components/parallax-scroll-view';
+import { ThemedText } from '@/components/themed-text';
+import { ThemedView } from '@/components/themed-view';
+import { Image } from 'expo-image';
+import { Link } from 'expo-router';
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Pressable, StyleSheet, useColorScheme } from 'react-native';
 
-const WelcomeScreen = ({ navigation }) => {
+export default function HomeScreen() {
+  const colorScheme = useColorScheme();
+
+  const logoSource =
+    colorScheme === 'dark'
+      ? require('@/assets/images/logo-MO.png')
+      : require('@/assets/images/educonnect-logo.png');
+
   return (
-    <View style={styles.container}>
-      <View style={styles.card}>
+    <ParallaxScrollView
+      headerBackgroundColor={{ light: '#fff', dark: '#08121E' }}
+      headerImage={
         <Image
-          source={require('@/assets/images/educonnect-logo.png')} // Asegúrate de tener el logo aquí
+          source={logoSource}
           style={styles.logo}
-          resizeMode="contain"
+          accessibilityLabel="Logo de EduConnect"
         />
-      </View>
+      }
+    >
+      <ThemedView style={styles.contentContainer}>
+        <ThemedView style={styles.titleContainer}>
+          <ThemedText type="title">Bienvenido</ThemedText>
+        </ThemedView>
 
-      <Text style={styles.welcome}>Bienvenido</Text>
-      <Text style={styles.description}>
-        Conecta a padres y maestros de manera fácil para un mejor seguimiento de hijos.
-      </Text>
+        <ThemedView style={styles.descriptionContainer}>
+          <ThemedText type="default">
+            Obten un seguimiento académico de tus hijos podrás ver sus calificaciones y su asistencia.
+          </ThemedText>
+        </ThemedView>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('Login')} // O la pantalla que desees
-      >
-        <Text style={styles.buttonText}>Empezar</Text>
-      </TouchableOpacity>
-    </View>
+        <ThemedView style={styles.buttonContainer}>
+          <Link href="/(tabs)/login" asChild>
+            <Pressable
+              style={styles.button}
+              accessible
+              accessibilityLabel="Botón para empezar sesión"
+            >
+              <ThemedText type="defaultSemiBold" style={styles.buttonText}>
+                Empezar
+              </ThemedText>
+            </Pressable>
+          </Link>
+        </ThemedView>
+      </ThemedView>
+    </ParallaxScrollView>
   );
-};
-
-export default WelcomeScreen;
+}
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffffff', // Fondo blanco
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  card: {
-    alignItems: 'center',
-    marginBottom: 0, // antes estaba en 30
-  },
   logo: {
-    width: 200,
-    height: 200,
-    marginBottom: 0, // antes estaba en 2
+    height: 180,
+    width: 180,
+    resizeMode: 'contain',
+    alignSelf: 'center',
+    marginTop: 40,
   },
-  tagline: {
-    fontSize: 14,
-    color: '#333',
+  contentContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
   },
-  welcome: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#1883E3', // Azul principal
-    marginBottom: 5,
+  titleContainer: {
+    marginBottom: 18,
   },
-  description: {
-    fontSize: 16,
-    color: '#000',
+  descriptionContainer: {
+    paddingHorizontal: 28,
+    marginBottom: 32,
     textAlign: 'center',
-    marginBottom: 30,
+  },
+  buttonContainer: {
+    marginTop: 12,
   },
   button: {
-    backgroundColor: '#12943E', // Verde secundario
-    paddingVertical: 12,
-    paddingHorizontal: 30,
-    borderRadius: 8,
+    backgroundColor: '#23A044',
+    paddingVertical: 14,
+    paddingHorizontal: 44,
+    borderRadius: 10,
+    shadowColor: '#08121E',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
-    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
