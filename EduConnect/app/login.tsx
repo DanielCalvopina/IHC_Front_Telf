@@ -1,121 +1,116 @@
-import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Image } from 'expo-image';
-import { Link, router } from 'expo-router';
+import { router } from 'expo-router';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, TextInput, useColorScheme } from 'react-native';
+import { Alert, Pressable, StyleSheet, TextInput, useColorScheme, View } from 'react-native';
+import datosPadre from './datosPadre.json';
 
 export default function LoginScreen() {
   const colorScheme = useColorScheme();
-  const [cedula, setCedula] = useState('');
+  const [usuario, setUsuario] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = async () => {
-    if (!cedula || !password) {
-      alert('Por favor ingresa tu cédula y contraseña');
+  const handleLogin = () => {
+    const okU = datosPadre.padre.credenciales.usuario;
+    const okP = datosPadre.padre.credenciales.password;
+
+    if (!usuario || !password) {
+      Alert.alert('Faltan datos', 'Ingresa usuario y contraseña');
       return;
     }
+    if (usuario === okU && password === okP) {
+      router.replace('/(tabs)/home'); // luego puedes cambiar a la ruta que prefieras
+    } else {
+      Alert.alert('Credenciales inválidas', 'Revisa tu usuario/contraseña');
+    }
+  };
 
-    // Navegar al home
-    router.replace('/(tabs)/home');
+  const handleForgot = () => {
+    Alert.alert('Recuperación', 'Flujo de recuperación pendiente.');
   };
 
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: 'transparent', dark: 'transparent' }}
-      headerImage={
-        <Image
-          source={
-            colorScheme === 'dark'
-              ? require('@/assets/images/logo-MO.png')
-              : require('@/assets/images/educonnect-logo.png')
-          }
-          style={styles.logo}
-        />
-      }
-    >
-      <ThemedView style={styles.container}>
-        <ThemedText type="title" style={styles.title}>
-          Iniciar Sesión
-        </ThemedText>
+    <ThemedView style={styles.container}>
+      <Image
+        source={
+          colorScheme === 'dark'
+            ? require('@/assets/images/logo-MO.png')
+            : require('@/assets/images/educonnect-logo.png')
+        }
+        style={styles.logo}
+      />
 
+      <ThemedText type="title" style={styles.title}>
+        Iniciar sesión
+      </ThemedText>
+
+      <View style={styles.inputWrap}>
         <TextInput
           style={styles.input}
-          placeholder="Cédula"
-          placeholderTextColor="#888"
+          placeholder="Usuario (cédula)"
+          placeholderTextColor="#8CA3B5"
           keyboardType="numeric"
-          value={cedula}
-          onChangeText={setCedula}
+          value={usuario}
+          onChangeText={setUsuario}
+          autoCapitalize="none"
         />
+      </View>
 
+      <View style={styles.inputWrap}>
         <TextInput
           style={styles.input}
           placeholder="Contraseña"
-          placeholderTextColor="#888"
-          secureTextEntry
+          placeholderTextColor="#8CA3B5"
           value={password}
           onChangeText={setPassword}
+          secureTextEntry
         />
+      </View>
 
-        <Pressable style={styles.loginButton} onPress={handleLogin}>
-          <ThemedText type="defaultSemiBold" style={styles.loginButtonText}>
-            Iniciar sesión
-          </ThemedText>
-        </Pressable>
-      </ThemedView>
-    </ParallaxScrollView>
+      <Pressable style={styles.loginBtn} onPress={handleLogin}>
+        <ThemedText type="defaultSemiBold" style={styles.loginBtnTxt}>
+          Iniciar sesión
+        </ThemedText>
+      </Pressable>
+
+      <Pressable onPress={handleForgot} style={styles.forgotBtn}>
+        <ThemedText style={styles.forgotTxt}>¿Olvidaste tu contraseña?</ThemedText>
+      </Pressable>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
-  logo: {
-    height: 160,
-    width: 160,
-    resizeMode: 'contain',
-    alignSelf: 'center',
-    marginTop: 40,
-  },
-  container: {
-    alignItems: 'center',
-    paddingHorizontal: 24,
-  },
-  title: {
-    marginTop: 12,
-    marginBottom: 20,
-  },
+  container: { flex: 1, paddingHorizontal: 24, paddingTop: 40, alignItems: 'center' },
+  logo: { height: 140, width: 140, resizeMode: 'contain', marginBottom: 16 },
+  title: { marginBottom: 18 },
+  inputWrap: { width: '100%', marginBottom: 14 },
   input: {
     width: '100%',
-    backgroundColor: '#f2f2f2',
-    color: '#000',
-    borderRadius: 8,
-    paddingVertical: 12,
+    backgroundColor: '#F1F5F9',
+    color: '#0F172A',
+    borderRadius: 12,
+    paddingVertical: 14,
     paddingHorizontal: 16,
-    marginBottom: 16,
     fontSize: 16,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
   },
-  loginButton: {
-    backgroundColor: '#23A044',
+  loginBtn: {
+    backgroundColor: '#22c55e',
     width: '100%',
     paddingVertical: 14,
-    borderRadius: 8,
+    borderRadius: 12,
     alignItems: 'center',
-    marginBottom: 14,
-    shadowColor: '#000',
+    marginTop: 8,
+    shadowColor: '#22c55e',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowRadius: 4,
     elevation: 4,
   },
-  loginButtonText: {
-    color: '#fff',
-    fontSize: 17,
-  },
-  createAccountButton: {
-    marginTop: 10,
-  },
-  createAccountText: {
-    color: '#1883E3',
-    fontSize: 16,
-  },
+  loginBtnTxt: { color: '#fff', fontSize: 16 },
+  forgotBtn: { marginTop: 14 },
+  forgotTxt: { color: '#0ea5e9', fontSize: 14, fontWeight: '600' },
 });
