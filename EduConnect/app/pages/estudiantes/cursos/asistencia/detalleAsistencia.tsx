@@ -2,7 +2,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
 import { Link, useLocalSearchParams } from "expo-router";
-import data from "../../../../../datosEstudiante.json";
+import data from "../../../../datosEstudiante.json";
 
 type Base = { id: string; fechaISO: string; fechaLarga: string; estado: string };
 type ConDetalle = Base & { detalle: { motivo: string | null; comentarioProfesor: string } };
@@ -29,7 +29,7 @@ export default function DetalleAsistencia() {
       {/* Header con botón de retroceso grande */}
       <View style={st.header}>
         <Link
-          href={{ pathname:"/(tabs)/pages/estudiantes/cursos/detailCurso", params:{ year, courseKey }}}
+          href={{ pathname:"/pages/estudiantes/cursos/detailCurso", params:{ year, courseKey }}}
           asChild
         >
           <Pressable style={st.backBtn} hitSlop={10}>
@@ -51,7 +51,7 @@ export default function DetalleAsistencia() {
 
                 {/ausenc|tarde/i.test(r.estado) && (
                   <Link
-                    href={{ pathname:"/(tabs)/pages/estudiantes/cursos/asistencia/detalleAsistencia", params:{ year, courseKey, id:r.id } }}
+                    href={{ pathname:"/pages/estudiantes/cursos/asistencia/detalleAsistencia", params:{ year, courseKey, id:r.id } }}
                     asChild
                   >
                     <Pressable><Text style={st.link}>Ver Detalles ▾</Text></Pressable>

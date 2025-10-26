@@ -63,14 +63,6 @@ export default function LoginScreen() {
             Iniciar sesión
           </ThemedText>
         </Pressable>
-
-        <Link href="/crear_cuenta" asChild>
-          <Pressable style={styles.createAccountButton}>
-            <ThemedText type="link" style={styles.createAccountText}>
-              ¿No tienes cuenta? Crear una
-            </ThemedText>
-          </Pressable>
-        </Link>
       </ThemedView>
     </ParallaxScrollView>
   );

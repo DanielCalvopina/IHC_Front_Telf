@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Pressable, StyleSheet, ScrollView } from "react-native";
 import { Link, useLocalSearchParams } from "expo-router";
-import data from "../../../../datosEstudiante.json";
+import data from "../../../datosEstudiante.json";
 
 type P = { year: string };
 
@@ -21,7 +21,7 @@ export default function TodosLosCursos() {
     <View style={{ flex:1, backgroundColor:"#F6F7F8" }}>
       <View style={st.header}>
         <Link
-          href={{ pathname:"/(tabs)/pages/estudiantes/detailEstudent", params:{ year } }}
+          href={{ pathname:"/pages/estudiantes/detailEstudent", params:{ year } }}
           asChild
         >
           <Pressable
@@ -42,7 +42,7 @@ export default function TodosLosCursos() {
           <View key={c.key} style={st.card}>
             <Text style={st.course}>{c.nombre}</Text>
             <Link
-              href={{ pathname:"/(tabs)/pages/estudiantes/cursos/detailCurso", params:{ year, courseKey:c.key } }}
+              href={{ pathname:"/pages/estudiantes/cursos/detailCurso", params:{ year, courseKey:c.key } }}
               asChild
             >
               <Pressable style={st.go}>

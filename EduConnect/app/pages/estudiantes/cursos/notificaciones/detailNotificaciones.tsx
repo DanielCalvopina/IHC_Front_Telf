@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
 import { Link, useLocalSearchParams } from "expo-router";
-import data from "../../../../../datosEstudiante.json";
+import data from "../../../../datosEstudiante.json";
 
 type P = { year: string; courseKey: string };
 
@@ -38,7 +38,7 @@ export default function DetailNotificaciones() {
       <View style={st.header}>
         <Link
           href={{
-            pathname: "/(tabs)/pages/estudiantes/cursos/detailCurso",
+            pathname: "/pages/estudiantes/cursos/detailCurso",
             params: { year, courseKey },
           }}
           asChild

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Image, Pressable, StyleSheet, ScrollView } from "react-native";
 import { Link, useLocalSearchParams } from "expo-router";
-import data from "../../../../datosEstudiante.json";
+import data from "../../../datosEstudiante.json";
 
 type P = { year: string; courseKey: string };
 
@@ -33,7 +33,7 @@ export default function DetailCurso() {
       {/* Header */}
       <View style={st.header}>
         <Link
-          href={{ pathname: "/(tabs)/pages/estudiantes/cursos/todosLosCursos", params: { year } }}
+          href={{ pathname: "/pages/estudiantes/cursos/todosLosCursos", params: { year } }}
           asChild
         >
           <Pressable
@@ -77,7 +77,7 @@ export default function DetailCurso() {
             </Text>
             <Link
               href={{
-                pathname: "/(tabs)/pages/estudiantes/cursos/notificaciones/detailNotificaciones",
+                pathname: "/pages/estudiantes/cursos/notificaciones/detailNotificaciones",
                 params: { year, courseKey },
               }}
               asChild
@@ -102,7 +102,7 @@ export default function DetailCurso() {
                 <Link
                   key={s.id}
                   href={{
-                    pathname: "/(tabs)/pages/estudiantes/cursos/notas/detalleNotas",
+                    pathname: "/pages/estudiantes/cursos/notas/detalleNotas",
                     params: { year, courseKey, semestre: String(s.id) },
                   }}
                   asChild
@@ -136,7 +136,7 @@ export default function DetailCurso() {
 
             <Link
               href={{
-                pathname: "/(tabs)/pages/estudiantes/cursos/asistencia/detalleAsistencia",
+                pathname: "/pages/estudiantes/cursos/asistencia/detalleAsistencia",
                 params: { year, courseKey },
               }}
               asChild

@@ -1,0 +1,44 @@
+{
+  "colegio": [
+    {
+      "id": "col-2025-03-10",
+      "titulo": "Simulacro de seguridad",
+      "fechaISO": "2025-03-10",
+      "fechaLarga": "10 de Marzo, 2025",
+      "cuerpo": "Mañana a las 10h00 realizaremos un simulacro de evacuación. Sigan las indicaciones de los docentes.",
+      "visto": false
+    },
+    {
+      "id": "col-2025-03-05",
+      "titulo": "Entrega de boletines",
+      "fechaISO": "2025-03-05",
+      "fechaLarga": "5 de Marzo, 2025",
+      "cuerpo": "Los boletines del primer parcial estarán disponibles en Secretaría Académica desde el viernes.",
+      "visto": false
+    },
+    {
+      "id": "col-2025-02-25",
+      "titulo": "Mantenimiento del portal",
+      "fechaISO": "2025-02-25",
+      "fechaLarga": "25 de Febrero, 2025",
+      "cuerpo": "El portal institucional estará en mantenimiento el sábado de 20h00 a 23h00.",
+      "visto": true
+    },
+    {
+      "id": "col-2025-02-18",
+      "titulo": "Día de la Ciencia",
+      "fechaISO": "2025-02-18",
+      "fechaLarga": "18 de Febrero, 2025",
+      "cuerpo": "Este miércoles realizaremos la feria de proyectos científicos en el coliseo.",
+      "visto": true
+    },
+    {
+      "id": "col-2025-02-10",
+      "titulo": "Uso de uniforme",
+      "fechaISO": "2025-02-10",
+      "fechaLarga": "10 de Febrero, 2025",
+      "cuerpo": "Recordatorio: el uso del uniforme es obligatorio de lunes a jueves.",
+      "visto": true
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Pressable, StyleSheet, ScrollView } from "react-native";
 import { Link, useLocalSearchParams } from "expo-router";
-import data from "../../../datosEstudiante.json";
+import data from "../../datosEstudiante.json"; // ← desde /pages/estudiantes
 
 type P = { year?: string };
 
@@ -13,13 +13,8 @@ export default function DetailStudent() {
   return (
     <View style={{ flex: 1, backgroundColor: "#F6F7F8" }}>
       <View style={st.header}>
-        <Link href="/(tabs)" asChild>
-          <Pressable
-            style={st.icon}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            accessibilityRole="button"
-            accessibilityLabel="Regresar"
-          >
+        <Link href="/(tabs)/home" asChild>
+          <Pressable style={st.icon}>
             <Text style={st.iconTxt}>←</Text>
           </Pressable>
         </Link>
@@ -29,7 +24,7 @@ export default function DetailStudent() {
 
       <ScrollView contentContainerStyle={{ padding: 16, gap: 12 }}>
         {data.aniosLectivos.map((a) => (
-          <View key={a.anioLectivo} style={[st.card, a.anioLectivo===current && st.cardActive]}>
+          <View key={a.anioLectivo} style={[st.card, a.anioLectivo === current && st.cardActive]}>
             <View>
               <Text style={st.grade}>{a.grado} - Paralelo {a.paralelo}</Text>
               <Text style={st.year}>{a.anioLectivo}</Text>
@@ -37,10 +32,7 @@ export default function DetailStudent() {
             </View>
 
             <Link
-              href={{
-                pathname: "/(tabs)/pages/estudiantes/cursos/todosLosCursos",
-                params: { year: a.anioLectivo },
-              }}
+              href={{ pathname: "/pages/estudiantes/cursos/todosLosCursos", params: { year: a.anioLectivo } }}
               asChild
             >
               <Pressable style={st.btn}><Text style={st.btnTxt}>Ver cursos</Text></Pressable>
@@ -53,30 +45,9 @@ export default function DetailStudent() {
 }
 
 const st = StyleSheet.create({
-  header:{
-    height:56,
-    flexDirection:"row",
-    alignItems:"center",
-    justifyContent:"space-between",
-    paddingHorizontal:12,
-    backgroundColor:"#fff",
-    borderBottomWidth:1,
-    borderBottomColor:"#E5E7EB"
-  },
-  // 👇 botón de retroceso más grande
-  icon:{
-    width:56,
-    height:56,
-    alignItems:"center",
-    justifyContent:"center",
-    marginLeft:-4, // un pelín hacia el borde
-  },
-  iconTxt:{
-    fontSize:28,     // flecha grande
-    fontWeight:"800",
-    color:"#0F172A",
-    lineHeight:28,
-  },
+  header:{height:56,flexDirection:"row",alignItems:"center",justifyContent:"space-between",paddingHorizontal:12,backgroundColor:"#fff",borderBottomWidth:1,borderBottomColor:"#E5E7EB"},
+  icon:{width:56,height:56,alignItems:"center",justifyContent:"center",marginLeft:-4},
+  iconTxt:{fontSize:28,fontWeight:"800",color:"#0F172A",lineHeight:28},
   title:{fontWeight:"800",fontSize:18,color:"#0F172A"},
 
   card:{backgroundColor:"#fff",borderRadius:16,padding:16,borderWidth:1,borderColor:"#E2E8F0"},
