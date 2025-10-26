@@ -33,7 +33,7 @@ export default function TodosLosCursos() {
             <Text style={st.iconTxt}>←</Text>
           </Pressable>
         </Link>
-        <Text style={st.title}>Cursos {y.anioLectivo}</Text>
+        <Text style={st.title}>Materias {y.anioLectivo}</Text>
         <View style={{ width:56 }} />
       </View>
 

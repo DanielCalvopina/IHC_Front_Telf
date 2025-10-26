@@ -1,8 +1,8 @@
+import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import React from 'react';
 
 import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
@@ -22,7 +22,7 @@ export default function TabLayout() {
         options={{
           title: 'Inicio',
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="house.fill" color={color} />
+            <Ionicons name="home" size={28} color={color} />
           ),
         }}
       />
@@ -31,7 +31,7 @@ export default function TabLayout() {
       options={{
         title: 'Perfil',
         tabBarIcon: ({ color }) => (
-          <IconSymbol size={28} name="person.fill" color={color} />
+          <Ionicons name="person" size={28} color={color} />
         ),
       }}
     />
@@ -40,7 +40,7 @@ export default function TabLayout() {
       options={{
         title: 'Notificaciones',
         tabBarIcon: ({ color }) => (
-          <IconSymbol size={28} name="bell.and.waveform" color={color} />
+          <Ionicons name="notifications" size={28} color={color} />
         ),
       }}
     />

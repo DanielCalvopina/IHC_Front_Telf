@@ -113,7 +113,7 @@ export default function NotificacionesScreen() {
 
             {/* Contexto (si es de curso) */}
             {"scope" in n && n.scope === "curso" && (
-              <Text style={st.badgeCtx}>Curso: {n.courseName}</Text>
+              <Text style={st.badgeCtx}>Materia: {n.courseName}</Text>
             )}
 
             <Text style={st.body}>{n.cuerpo}</Text>
@@ -122,6 +122,7 @@ export default function NotificacionesScreen() {
               {/* alternar leído */}
               <Pressable
                 onPress={() => toggleLeido(n.id)}
+                
                 style={[st.badge, n.visto ? st.badgeOk : st.badgeWarn]}
               >
                 <Text style={n.visto ? st.badgeOkTxt : st.badgeWarnTxt}>
@@ -139,7 +140,7 @@ export default function NotificacionesScreen() {
                   asChild
                 >
                   <Pressable style={st.ghostBtn}>
-                    <Text style={st.ghostBtnTxt}>Abrir curso</Text>
+                    <Text style={st.ghostBtnTxt}>Abrir Materia</Text>
                   </Pressable>
                 </Link>
               )}
