@@ -2,7 +2,7 @@ import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Image } from 'expo-image';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, TextInput, useColorScheme } from 'react-native';
 
@@ -11,17 +11,19 @@ export default function LoginScreen() {
   const [cedula, setCedula] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    alert(`Iniciando sesión con cédula: ${cedula}`);
-  };
+  const handleLogin = async () => {
+    if (!cedula || !password) {
+      alert('Por favor ingresa tu cédula y contraseña');
+      return;
+    }
 
-  const handleGoogleLogin = () => {
-    alert('Iniciar sesión con Google (aquí iría la integración)');
+    // Navegar al home
+    router.replace('/(tabs)/home');
   };
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#fff', dark: '#08121E' }}
+      headerBackgroundColor={{ light: 'transparent', dark: 'transparent' }}
       headerImage={
         <Image
           source={
@@ -62,17 +64,7 @@ export default function LoginScreen() {
           </ThemedText>
         </Pressable>
 
-        <Pressable style={styles.googleButton} onPress={handleGoogleLogin}>
-          <Image
-            source={require('@/assets/images/google-icon.png')} // Añade este ícono
-            style={styles.googleIcon}
-          />
-          <ThemedText type="defaultSemiBold" style={styles.googleButtonText}>
-            Iniciar con Google
-          </ThemedText>
-        </Pressable>
-
-        <Link href="/(tabs)/crear_cuenta" asChild>
+        <Link href="/crear_cuenta" asChild>
           <Pressable style={styles.createAccountButton}>
             <ThemedText type="link" style={styles.createAccountText}>
               ¿No tienes cuenta? Crear una
@@ -126,27 +118,6 @@ const styles = StyleSheet.create({
   loginButtonText: {
     color: '#fff',
     fontSize: 17,
-  },
-  googleButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-    borderColor: '#ccc',
-    borderWidth: 1,
-    width: '100%',
-    paddingVertical: 12,
-    borderRadius: 8,
-    marginBottom: 20,
-  },
-  googleIcon: {
-    width: 20,
-    height: 20,
-    marginRight: 10,
-  },
-  googleButtonText: {
-    color: '#000',
-    fontSize: 16,
   },
   createAccountButton: {
     marginTop: 10,

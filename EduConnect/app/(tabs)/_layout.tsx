@@ -18,7 +18,7 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="pages/home/index"
+        name="home/index"
         options={{
           title: 'Inicio',
           tabBarIcon: ({ color }) => (
@@ -26,26 +26,24 @@ export default function TabLayout() {
           ),
         }}
       />
-
-      <Tabs.Screen
-        name="pages/home/perfil"
-        options={{
-          title: 'Perfil',
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="person.crop.circle.fill" color={color} />
-          ),
-        }}
-      />
-
-      <Tabs.Screen
-        name="pages/home/notificaciones"
-        options={{
-          title: 'Notificaciones',
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="bell.fill" color={color} />
-          ),
-        }}
-      />
+     <Tabs.Screen
+      name="home/perfil"
+      options={{
+        title: 'Perfil',
+        tabBarIcon: ({ color }) => (
+          <IconSymbol size={28} name="person.fill" color={color} />
+        ),
+      }}
+    />
+    <Tabs.Screen
+      name="home/notificaciones"
+      options={{
+        title: 'Notificaciones',
+        tabBarIcon: ({ color }) => (
+          <IconSymbol size={28} name="bell.and.waveform" color={color} />
+        ),
+      }}
+    />
     </Tabs>
   );
 }

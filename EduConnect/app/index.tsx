@@ -16,7 +16,7 @@ export default function HomeScreen() {
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#fff', dark: '#08121E' }}
+      headerBackgroundColor={{ light: 'transparent', dark: 'transparent' }}
       headerImage={
         <Image
           source={logoSource}
@@ -37,7 +37,7 @@ export default function HomeScreen() {
         </ThemedView>
 
         <ThemedView style={styles.buttonContainer}>
-          <Link href="/(tabs)/login" asChild>
+          <Link href="/login" asChild>
             <Pressable
               style={styles.button}
               accessible

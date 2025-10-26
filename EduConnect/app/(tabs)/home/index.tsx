@@ -26,7 +26,7 @@ export default function HomeScreen() {
 
   // Navegar a la pantalla de Año Lectivo
   const handleDetailsPress = () => {
-    navigation.navigate('AnioLectivo'); // <-- nombre de la pantalla en tu navigator
+    navigation.navigate('app\pages\estudiantes\año lectivo\anios-lectivos.tsx'); // <-- nombre de la pantalla en tu navigator
   };
 
   return (
@@ -96,7 +96,7 @@ export default function HomeScreen() {
   );
 }
 
-const styles = (colorScheme) =>
+const styles = (colorScheme: string | null | undefined) =>
   StyleSheet.create({
     logo: {
       height: 180,
