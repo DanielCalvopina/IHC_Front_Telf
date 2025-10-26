@@ -1,0 +1,653 @@
+{
+  "student": {
+    "id": "0923145789",
+    "nombre": "María Fernanda López",
+    "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop",
+    "cursoActual": {
+      "grado": "8vo EGB",
+      "paralelo": "B",
+      "label": "8vo EGB paralelo B",
+      "anioLectivo": "2024-2025",
+      "rango": "Septiembre 2024 - Junio 2025"
+    }
+  },
+  "aniosLectivos": [
+    {
+      "anioLectivo": "2024-2025",
+      "grado": "8vo EGB",
+      "paralelo": "B",
+      "rango": "Septiembre 2024 - Junio 2025",
+      "cursos": [
+        {
+          "key": "mat",
+          "nombre": "Matemáticas",
+          "detalleTitulo": "Matemáticas Avanzadas",
+          "docente": { "nombre": "Carlos Rodríguez", "email": "crodriguez@school.com" },
+          "notificaciones": [
+            { "id": "mat-001", "titulo": "Recordatorio: Examen de Álgebra", "fechaISO": "2025-03-15", "fechaLarga": "15 de Marzo, 2025", "cuerpo": "Examen de álgebra, repasar ecuaciones lineales.", "visto": false },
+            { "id": "mat-002", "titulo": "Cambio de horario", "fechaISO": "2025-02-20", "fechaLarga": "20 de Febrero, 2025", "cuerpo": "La clase del lunes pasa a las 10:30.", "visto": true },
+            { "id": "mat-003", "titulo": "Tarea Unidad 2", "fechaISO": "2025-02-05", "fechaLarga": "5 de Febrero, 2025", "cuerpo": "Subir resolución de sistemas de ecuaciones.", "visto": false },
+            { "id": "mat-004", "titulo": "Proyecto Geometría", "fechaISO": "2025-01-22", "fechaLarga": "22 de Enero, 2025", "cuerpo": "Traer material para polígonos y círculos.", "visto": true },
+            { "id": "mat-005", "titulo": "Rubrica de Parcial", "fechaISO": "2025-01-10", "fechaLarga": "10 de Enero, 2025", "cuerpo": "Publicada la rúbrica del parcial 1.", "visto": true }
+          ],
+          "notas": {
+            "semestres": [
+              {
+                "id": 1,
+                "promedio": 8.6,
+                "unidades": [
+                  {
+                    "id": 1,
+                    "promedio": 9.3,
+                    "items": [
+                      { "tipo": "exam", "titulo": "Parcial 1", "fecha": "2025-01-25", "nota": 9.2 },
+                      { "tipo": "task", "titulo": "Tarea Ecuaciones", "fecha": "2025-01-30", "nota": 9.0 },
+                      { "tipo": "exam", "titulo": "Quiz Razones", "fecha": "2025-02-04", "nota": 9.5 },
+                      { "tipo": "task", "titulo": "Proyecto Funciones", "fecha": "2025-02-12", "nota": 9.6 },
+                      { "tipo": "task", "titulo": "Trabajo en clase", "fecha": "2025-02-15", "nota": 9.1 }
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "promedio": 8.0,
+                    "items": [
+                      { "tipo": "exam", "titulo": "Parcial 2", "fecha": "2025-03-10", "nota": 8.4 },
+                      { "tipo": "task", "titulo": "Tarea Geometría", "fecha": "2025-03-12", "nota": 7.8 },
+                      { "tipo": "task", "titulo": "Cuaderno", "fecha": "2025-03-14", "nota": 8.0 },
+                      { "tipo": "exam", "titulo": "Quiz Ángulos", "fecha": "2025-03-18", "nota": 7.6 },
+                      { "tipo": "task", "titulo": "Proyecto Áreas", "fecha": "2025-03-22", "nota": 8.1 }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "promedio": 8.7,
+                "unidades": [
+                  {
+                    "id": 1,
+                    "promedio": 8.9,
+                    "items": [
+                      { "tipo": "exam", "titulo": "Parcial 1", "fecha": "2025-04-20", "nota": 8.8 },
+                      { "tipo": "task", "titulo": "Tarea Funciones", "fecha": "2025-04-25", "nota": 9.1 },
+                      { "tipo": "exam", "titulo": "Quiz Gráficas", "fecha": "2025-04-30", "nota": 9.0 },
+                      { "tipo": "task", "titulo": "Proyecto Modelación", "fecha": "2025-05-05", "nota": 8.7 },
+                      { "tipo": "task", "titulo": "Trabajo Colaborativo", "fecha": "2025-05-10", "nota": 8.9 }
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "promedio": 8.5,
+                    "items": [
+                      { "tipo": "exam", "titulo": "Parcial 2", "fecha": "2025-06-01", "nota": 8.6 },
+                      { "tipo": "task", "titulo": "Tarea Probabilidad", "fecha": "2025-06-04", "nota": 8.4 },
+                      { "tipo": "task", "titulo": "Cuaderno", "fecha": "2025-06-06", "nota": 8.5 },
+                      { "tipo": "exam", "titulo": "Quiz Estadística", "fecha": "2025-06-08", "nota": 8.3 },
+                      { "tipo": "task", "titulo": "Proyecto Final", "fecha": "2025-06-12", "nota": 8.8 }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "asistencia": [
+            { "id": "M-2501", "fechaISO": "2025-01-09", "fechaLarga": "Jueves, 9 de Enero de 2025", "estado": "Presente" },
+            { "id": "M-2502", "fechaISO": "2025-01-16", "fechaLarga": "Jueves, 16 de Enero de 2025", "estado": "Presente" },
+            { "id": "M-2503", "fechaISO": "2025-01-23", "fechaLarga": "Jueves, 23 de Enero de 2025", "estado": "Tarde" },
+            { "id": "M-2504", "fechaISO": "2025-01-30", "fechaLarga": "Jueves, 30 de Enero de 2025", "estado": "Presente" },
+            { "id": "M-2505", "fechaISO": "2025-02-06", "fechaLarga": "Jueves, 6 de Febrero de 2025", "estado": "Ausencia Injustificada", "detalle": { "motivo": null, "comentarioProfesor": "No se presentó a primera hora." } },
+            { "id": "M-2506", "fechaISO": "2025-02-13", "fechaLarga": "Jueves, 13 de Febrero de 2025", "estado": "Presente" },
+            { "id": "M-2507", "fechaISO": "2025-02-20", "fechaLarga": "Jueves, 20 de Febrero de 2025", "estado": "Presente" },
+            { "id": "M-2508", "fechaISO": "2025-02-27", "fechaLarga": "Jueves, 27 de Febrero de 2025", "estado": "Tarde" },
+            { "id": "M-2509", "fechaISO": "2025-03-06", "fechaLarga": "Jueves, 6 de Marzo de 2025", "estado": "Ausencia Justificada", "detalle": { "motivo": "Cita médica", "comentarioProfesor": "Se adjuntó justificativo." } },
+            { "id": "M-2510", "fechaISO": "2025-03-13", "fechaLarga": "Jueves, 13 de Marzo de 2025", "estado": "Presente" }
+          ]
+        },
+        {
+          "key": "nat",
+          "nombre": "Ciencias Naturales",
+          "detalleTitulo": "Ciencias Naturales",
+          "docente": { "nombre": "Ana Martínez", "email": "amartinez@school.com" },
+          "notificaciones": [
+            { "id": "nat-001", "titulo": "Práctica de laboratorio", "fechaISO": "2024-10-10", "fechaLarga": "10 de Octubre, 2024", "cuerpo": "Traer bata y gafas de seguridad.", "visto": true },
+            { "id": "nat-002", "titulo": "Entrega de informe", "fechaISO": "2024-10-20", "fechaLarga": "20 de Octubre, 2024", "cuerpo": "Subir PDF del informe a la plataforma.", "visto": false },
+            { "id": "nat-003", "titulo": "Rubrica de proyecto", "fechaISO": "2024-11-01", "fechaLarga": "1 de Noviembre, 2024", "cuerpo": "Se publica la rúbrica del proyecto de células.", "visto": true },
+            { "id": "nat-004", "titulo": "Recordatorio: Quiz", "fechaISO": "2024-11-08", "fechaLarga": "8 de Noviembre, 2024", "cuerpo": "Quiz de ecosistemas el viernes.", "visto": false },
+            { "id": "nat-005", "titulo": "Cambio de aula", "fechaISO": "2024-11-15", "fechaLarga": "15 de Noviembre, 2024", "cuerpo": "Laboratorio 2, segundo piso.", "visto": true }
+          ],
+          "notas": {
+            "semestres": [
+              {
+                "id": 1,
+                "promedio": 8.2,
+                "unidades": [
+                  {
+                    "id": 1,
+                    "promedio": 8.4,
+                    "items": [
+                      { "tipo": "task", "titulo": "Cuaderno", "fecha": "2024-10-05", "nota": 8.2 },
+                      { "tipo": "exam", "titulo": "Quiz Células", "fecha": "2024-10-12", "nota": 8.6 },
+                      { "tipo": "task", "titulo": "Informe Lab 1", "fecha": "2024-10-18", "nota": 8.4 },
+                      { "tipo": "exam", "titulo": "Parcial 1", "fecha": "2024-10-25", "nota": 8.7 },
+                      { "tipo": "task", "titulo": "Tarea Microscopio", "fecha": "2024-10-28", "nota": 8.0 }
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "promedio": 8.0,
+                    "items": [
+                      { "tipo": "task", "titulo": "Cuaderno", "fecha": "2024-11-05", "nota": 7.9 },
+                      { "tipo": "exam", "titulo": "Quiz ADN", "fecha": "2024-11-10", "nota": 8.1 },
+                      { "tipo": "task", "titulo": "Informe Lab 2", "fecha": "2024-11-12", "nota": 8.2 },
+                      { "tipo": "exam", "titulo": "Parcial 2", "fecha": "2024-11-20", "nota": 8.0 },
+                      { "tipo": "task", "titulo": "Tarea Genética", "fecha": "2024-11-24", "nota": 7.9 }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "promedio": 8.5,
+                "unidades": [
+                  {
+                    "id": 1,
+                    "promedio": 8.6,
+                    "items": [
+                      { "tipo": "exam", "titulo": "Quiz Ecosistemas", "fecha": "2025-03-02", "nota": 8.6 },
+                      { "tipo": "task", "titulo": "Trabajo Campo", "fecha": "2025-03-06", "nota": 8.5 },
+                      { "tipo": "task", "titulo": "Cuaderno", "fecha": "2025-03-10", "nota": 8.7 },
+                      { "tipo": "exam", "titulo": "Parcial", "fecha": "2025-03-15", "nota": 8.4 },
+                      { "tipo": "task", "titulo": "Infografía", "fecha": "2025-03-20", "nota": 8.8 }
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "promedio": 8.4,
+                    "items": [
+                      { "tipo": "task", "titulo": "Diagrama Flujo", "fecha": "2025-04-05", "nota": 8.3 },
+                      { "tipo": "exam", "titulo": "Quiz Energía", "fecha": "2025-04-09", "nota": 8.4 },
+                      { "tipo": "task", "titulo": "Ensayo", "fecha": "2025-04-12", "nota": 8.5 },
+                      { "tipo": "task", "titulo": "Cuaderno", "fecha": "2025-04-15", "nota": 8.2 },
+                      { "tipo": "exam", "titulo": "Examen Final", "fecha": "2025-04-20", "nota": 8.7 }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "asistencia": [
+            { "id": "N-2501", "fechaISO": "2024-10-02", "fechaLarga": "Miércoles, 2 de Octubre de 2024", "estado": "Presente" },
+            { "id": "N-2502", "fechaISO": "2024-10-09", "fechaLarga": "Miércoles, 9 de Octubre de 2024", "estado": "Presente" },
+            { "id": "N-2503", "fechaISO": "2024-10-16", "fechaLarga": "Miércoles, 16 de Octubre de 2024", "estado": "Tarde" },
+            { "id": "N-2504", "fechaISO": "2024-10-23", "fechaLarga": "Miércoles, 23 de Octubre de 2024", "estado": "Ausencia Injustificada", "detalle": { "motivo": null, "comentarioProfesor": "No se recibió notificación previa." } },
+            { "id": "N-2505", "fechaISO": "2024-10-30", "fechaLarga": "Miércoles, 30 de Octubre de 2024", "estado": "Presente" },
+            { "id": "N-2506", "fechaISO": "2024-11-06", "fechaLarga": "Miércoles, 6 de Noviembre de 2024", "estado": "Presente" },
+            { "id": "N-2507", "fechaISO": "2024-11-13", "fechaLarga": "Miércoles, 13 de Noviembre de 2024", "estado": "Tarde" },
+            { "id": "N-2508", "fechaISO": "2024-11-20", "fechaLarga": "Miércoles, 20 de Noviembre de 2024", "estado": "Presente" },
+            { "id": "N-2509", "fechaISO": "2024-11-27", "fechaLarga": "Miércoles, 27 de Noviembre de 2024", "estado": "Ausencia Justificada", "detalle": { "motivo": "Enfermedad", "comentarioProfesor": "Se envió justificativo." } },
+            { "id": "N-2510", "fechaISO": "2024-12-04", "fechaLarga": "Miércoles, 4 de Diciembre de 2024", "estado": "Presente" }
+          ]
+        },
+        {
+          "key": "his",
+          "nombre": "Historia",
+          "detalleTitulo": "Historia",
+          "docente": { "nombre": "Luis Herrera", "email": "lherrera@school.com" },
+          "notificaciones": [
+            { "id": "his-001", "titulo": "Lectura obligatoria", "fechaISO": "2025-01-12", "fechaLarga": "12 de Enero, 2025", "cuerpo": "Cap. 3 Revolución Francesa.", "visto": true },
+            { "id": "his-002", "titulo": "Visita museo", "fechaISO": "2025-01-18", "fechaLarga": "18 de Enero, 2025", "cuerpo": "Autorizaciones hasta el 16/01.", "visto": true },
+            { "id": "his-003", "titulo": "Entrega ensayo", "fechaISO": "2025-01-28", "fechaLarga": "28 de Enero, 2025", "cuerpo": "Ensayo 800 palabras sobre Ilustración.", "visto": false },
+            { "id": "his-004", "titulo": "Debate en clase", "fechaISO": "2025-02-05", "fechaLarga": "5 de Febrero, 2025", "cuerpo": "Traer notas y citas.", "visto": false },
+            { "id": "his-005", "titulo": "Material audiovisual", "fechaISO": "2025-02-12", "fechaLarga": "12 de Febrero, 2025", "cuerpo": "Video subido a la plataforma.", "visto": true }
+          ],
+          "notas": {
+            "semestres": [
+              {
+                "id": 1,
+                "promedio": 8.3,
+                "unidades": [
+                  { "id": 1, "promedio": 8.2, "items": [
+                    { "tipo": "task", "titulo": "Mapa conceptual", "fecha": "2025-01-08", "nota": 8.0 },
+                    { "tipo": "exam", "titulo": "Quiz Ilustración", "fecha": "2025-01-15", "nota": 8.5 },
+                    { "tipo": "task", "titulo": "Resumen lectura", "fecha": "2025-01-18", "nota": 8.0 },
+                    { "tipo": "exam", "titulo": "Parcial 1", "fecha": "2025-01-22", "nota": 8.4 },
+                    { "tipo": "task", "titulo": "Tarea cronogramas", "fecha": "2025-01-26", "nota": 8.1 }
+                  ]},
+                  { "id": 2, "promedio": 8.4, "items": [
+                    { "tipo": "task", "titulo": "Línea del tiempo", "fecha": "2025-02-03", "nota": 8.4 },
+                    { "tipo": "exam", "titulo": "Quiz Revolución", "fecha": "2025-02-07", "nota": 8.6 },
+                    { "tipo": "task", "titulo": "Reto bibliográfico", "fecha": "2025-02-10", "nota": 8.3 },
+                    { "tipo": "exam", "titulo": "Parcial 2", "fecha": "2025-02-14", "nota": 8.2 },
+                    { "tipo": "task", "titulo": "Crónica", "fecha": "2025-02-18", "nota": 8.5 }
+                  ]}
+                ]
+              },
+              {
+                "id": 2,
+                "promedio": 8.6,
+                "unidades": [
+                  { "id": 1, "promedio": 8.7, "items": [
+                    { "tipo": "task", "titulo": "Cuadro comparativo", "fecha": "2025-03-25", "nota": 8.6 },
+                    { "tipo": "exam", "titulo": "Quiz Guerras", "fecha": "2025-03-29", "nota": 8.7 },
+                    { "tipo": "task", "titulo": "Ensayo corto", "fecha": "2025-04-01", "nota": 8.8 },
+                    { "tipo": "task", "titulo": "Cuaderno", "fecha": "2025-04-05", "nota": 8.6 },
+                    { "tipo": "exam", "titulo": "Parcial", "fecha": "2025-04-10", "nota": 8.7 }
+                  ]},
+                  { "id": 2, "promedio": 8.5, "items": [
+                    { "tipo": "task", "titulo": "Fichas resumen", "fecha": "2025-05-02", "nota": 8.4 },
+                    { "tipo": "exam", "titulo": "Quiz Independencias", "fecha": "2025-05-06", "nota": 8.6 },
+                    { "tipo": "task", "titulo": "Trabajo grupal", "fecha": "2025-05-10", "nota": 8.4 },
+                    { "tipo": "task", "titulo": "Cuaderno", "fecha": "2025-05-14", "nota": 8.3 },
+                    { "tipo": "exam", "titulo": "Examen Final", "fecha": "2025-05-20", "nota": 8.7 }
+                  ]}
+                ]
+              }
+            ]
+          },
+          "asistencia": [
+            { "id": "H-2501", "fechaISO": "2025-01-07", "fechaLarga": "Martes, 7 de Enero de 2025", "estado": "Presente" },
+            { "id": "H-2502", "fechaISO": "2025-01-14", "fechaLarga": "Martes, 14 de Enero de 2025", "estado": "Presente" },
+            { "id": "H-2503", "fechaISO": "2025-01-21", "fechaLarga": "Martes, 21 de Enero de 2025", "estado": "Presente" },
+            { "id": "H-2504", "fechaISO": "2025-01-28", "fechaLarga": "Martes, 28 de Enero de 2025", "estado": "Tarde" },
+            { "id": "H-2505", "fechaISO": "2025-02-04", "fechaLarga": "Martes, 4 de Febrero de 2025", "estado": "Presente" },
+            { "id": "H-2506", "fechaISO": "2025-02-11", "fechaLarga": "Martes, 11 de Febrero de 2025", "estado": "Presente" },
+            { "id": "H-2507", "fechaISO": "2025-02-18", "fechaLarga": "Martes, 18 de Febrero de 2025", "estado": "Ausencia Injustificada", "detalle": { "motivo": null, "comentarioProfesor": "Falta sin aviso." } },
+            { "id": "H-2508", "fechaISO": "2025-02-25", "fechaLarga": "Martes, 25 de Febrero de 2025", "estado": "Presente" },
+            { "id": "H-2509", "fechaISO": "2025-03-04", "fechaLarga": "Martes, 4 de Marzo de 2025", "estado": "Presente" },
+            { "id": "H-2510", "fechaISO": "2025-03-11", "fechaLarga": "Martes, 11 de Marzo de 2025", "estado": "Presente" }
+          ]
+        }
+      ]
+    },
+    {
+      "anioLectivo": "2023-2024",
+      "grado": "7mo EGB",
+      "paralelo": "B",
+      "rango": "Septiembre 2023 - Junio 2024",
+      "cursos": [
+        {
+          "key": "mat",
+          "nombre": "Matemáticas",
+          "detalleTitulo": "Matemáticas",
+          "docente": { "nombre": "Carolina Vega", "email": "cvega@school.com" },
+          "notificaciones": [
+            { "id": "mat7-001", "titulo": "Guía de fracciones", "fechaISO": "2024-01-20", "fechaLarga": "20 de Enero, 2024", "cuerpo": "Guía de fracciones equivalentes.", "visto": true },
+            { "id": "mat7-002", "titulo": "Quiz enteros", "fechaISO": "2023-11-02", "fechaLarga": "2 de Noviembre, 2023", "cuerpo": "Quiz de números enteros.", "visto": true },
+            { "id": "mat7-003", "titulo": "Proyecto triángulos", "fechaISO": "2023-11-15", "fechaLarga": "15 de Noviembre, 2023", "cuerpo": "Traer cartulina.", "visto": false },
+            { "id": "mat7-004", "titulo": "Cambio de aula", "fechaISO": "2023-12-01", "fechaLarga": "1 de Diciembre, 2023", "cuerpo": "Aula 5B.", "visto": true },
+            { "id": "mat7-005", "titulo": "Recordatorio: parcial", "fechaISO": "2023-12-10", "fechaLarga": "10 de Diciembre, 2023", "cuerpo": "Parcial de geometría.", "visto": false }
+          ],
+          "notas": {
+            "semestres": [
+              {
+                "id": 1,
+                "promedio": 8.4,
+                "unidades": [
+                  { "id": 1, "promedio": 8.9, "items": [
+                    { "tipo": "exam", "titulo": "Parcial Enteros", "fecha": "2023-11-05", "nota": 8.8 },
+                    { "tipo": "task", "titulo": "Tarea Fracciones", "fecha": "2023-11-08", "nota": 8.5 },
+                    { "tipo": "exam", "titulo": "Quiz Fracciones", "fecha": "2023-11-12", "nota": 8.9 },
+                    { "tipo": "task", "titulo": "Ejercicios", "fecha": "2023-11-16", "nota": 8.7 },
+                    { "tipo": "task", "titulo": "Trabajo Grupal", "fecha": "2023-11-20", "nota": 8.6 }
+                  ]},
+                  { "id": 2, "promedio": 8.0, "items": [
+                    { "tipo": "task", "titulo": "Cuaderno", "fecha": "2023-12-01", "nota": 8.0 },
+                    { "tipo": "exam", "titulo": "Quiz Geometría", "fecha": "2023-12-05", "nota": 7.9 },
+                    { "tipo": "task", "titulo": "Maquetas", "fecha": "2023-12-08", "nota": 8.2 },
+                    { "tipo": "exam", "titulo": "Parcial 2", "fecha": "2023-12-12", "nota": 8.1 },
+                    { "tipo": "task", "titulo": "Tarea Ángulos", "fecha": "2023-12-15", "nota": 8.0 }
+                  ]}
+                ]
+              },
+              {
+                "id": 2,
+                "promedio": 8.3,
+                "unidades": [
+                  { "id": 1, "promedio": 8.4, "items": [
+                    { "tipo": "exam", "titulo": "Quiz Datos", "fecha": "2024-03-01", "nota": 8.4 },
+                    { "tipo": "task", "titulo": "Tabla Frecuencia", "fecha": "2024-03-04", "nota": 8.3 },
+                    { "tipo": "task", "titulo": "Gráficas", "fecha": "2024-03-08", "nota": 8.5 },
+                    { "tipo": "exam", "titulo": "Parcial", "fecha": "2024-03-12", "nota": 8.4 },
+                    { "tipo": "task", "titulo": "Trabajo Final", "fecha": "2024-03-16", "nota": 8.6 }
+                  ]},
+                  { "id": 2, "promedio": 8.2, "items": [
+                    { "tipo": "task", "titulo": "Cuaderno", "fecha": "2024-05-01", "nota": 8.2 },
+                    { "tipo": "exam", "titulo": "Quiz Proporciones", "fecha": "2024-05-05", "nota": 8.3 },
+                    { "tipo": "task", "titulo": "Tarea", "fecha": "2024-05-08", "nota": 8.1 },
+                    { "tipo": "exam", "titulo": "Examen Final", "fecha": "2024-05-12", "nota": 8.2 },
+                    { "tipo": "task", "titulo": "Proyecto", "fecha": "2024-05-16", "nota": 8.3 }
+                  ]}
+                ]
+              }
+            ]
+          },
+          "asistencia": [
+            { "id": "M7-01", "fechaISO": "2023-10-03", "fechaLarga": "Martes, 3 de Octubre de 2023", "estado": "Presente" },
+            { "id": "M7-02", "fechaISO": "2023-10-10", "fechaLarga": "Martes, 10 de Octubre de 2023", "estado": "Presente" },
+            { "id": "M7-03", "fechaISO": "2023-10-17", "fechaLarga": "Martes, 17 de Octubre de 2023", "estado": "Tarde" },
+            { "id": "M7-04", "fechaISO": "2023-10-24", "fechaLarga": "Martes, 24 de Octubre de 2023", "estado": "Presente" },
+            { "id": "M7-05", "fechaISO": "2023-10-31", "fechaLarga": "Martes, 31 de Octubre de 2023", "estado": "Ausencia Justificada", "detalle": { "motivo": "Enfermedad", "comentarioProfesor": "Enviaron certificado." } },
+            { "id": "M7-06", "fechaISO": "2023-11-07", "fechaLarga": "Martes, 7 de Noviembre de 2023", "estado": "Presente" },
+            { "id": "M7-07", "fechaISO": "2023-11-14", "fechaLarga": "Martes, 14 de Noviembre de 2023", "estado": "Presente" },
+            { "id": "M7-08", "fechaISO": "2023-11-21", "fechaLarga": "Martes, 21 de Noviembre de 2023", "estado": "Presente" },
+            { "id": "M7-09", "fechaISO": "2023-11-28", "fechaLarga": "Martes, 28 de Noviembre de 2023", "estado": "Tarde" },
+            { "id": "M7-10", "fechaISO": "2023-12-05", "fechaLarga": "Martes, 5 de Diciembre de 2023", "estado": "Presente" }
+          ]
+        },
+        {
+          "key": "nat",
+          "nombre": "Ciencias Naturales",
+          "detalleTitulo": "Ciencias Naturales",
+          "docente": { "nombre": "Ana Martínez", "email": "amartinez@school.com" },
+          "notificaciones": [
+            { "id": "nat7-001", "titulo": "Práctica 1", "fechaISO": "2023-10-05", "fechaLarga": "5 de Octubre, 2023", "cuerpo": "Traer bata.", "visto": true },
+            { "id": "nat7-002", "titulo": "Quiz", "fechaISO": "2023-10-12", "fechaLarga": "12 de Octubre, 2023", "cuerpo": "Quiz sobre células.", "visto": true },
+            { "id": "nat7-003", "titulo": "Cambio de aula", "fechaISO": "2023-10-20", "fechaLarga": "20 de Octubre, 2023", "cuerpo": "Pasamos a Lab 1.", "visto": true },
+            { "id": "nat7-004", "titulo": "Informe", "fechaISO": "2023-10-28", "fechaLarga": "28 de Octubre, 2023", "cuerpo": "Subir PDF.", "visto": false },
+            { "id": "nat7-005", "titulo": "Excursión", "fechaISO": "2023-11-03", "fechaLarga": "3 de Noviembre, 2023", "cuerpo": "Traer autorización.", "visto": false }
+          ],
+          "notas": {
+            "semestres": [
+              { "id": 1, "promedio": 8.2, "unidades": [
+                { "id": 1, "promedio": 8.3, "items": [
+                  { "tipo": "exam", "titulo": "Quiz 1", "fecha": "2023-10-06", "nota": 8.3 },
+                  { "tipo": "task", "titulo": "Cuaderno", "fecha": "2023-10-08", "nota": 8.2 },
+                  { "tipo": "task", "titulo": "Informe", "fecha": "2023-10-11", "nota": 8.1 },
+                  { "tipo": "exam", "titulo": "Parcial 1", "fecha": "2023-10-18", "nota": 8.4 },
+                  { "tipo": "task", "titulo": "Trabajo", "fecha": "2023-10-22", "nota": 8.3 }
+                ]},
+                { "id": 2, "promedio": 8.1, "items": [
+                  { "tipo": "task", "titulo": "Cuaderno", "fecha": "2023-11-04", "nota": 8.0 },
+                  { "tipo": "exam", "titulo": "Quiz 2", "fecha": "2023-11-08", "nota": 8.2 },
+                  { "tipo": "task", "titulo": "Informe 2", "fecha": "2023-11-12", "nota": 8.1 },
+                  { "tipo": "exam", "titulo": "Parcial 2", "fecha": "2023-11-18", "nota": 8.1 },
+                  { "tipo": "task", "titulo": "Trabajo 2", "fecha": "2023-11-22", "nota": 8.2 }
+                ]}
+              ]},
+              { "id": 2, "promedio": 8.2, "unidades": [
+                { "id": 1, "promedio": 8.2, "items": [
+                  { "tipo": "exam", "titulo": "Quiz 3", "fecha": "2024-02-05", "nota": 8.2 },
+                  { "tipo": "task", "titulo": "Cuaderno", "fecha": "2024-02-08", "nota": 8.1 },
+                  { "tipo": "task", "titulo": "Trabajo Campo", "fecha": "2024-02-12", "nota": 8.3 },
+                  { "tipo": "exam", "titulo": "Parcial 3", "fecha": "2024-02-16", "nota": 8.2 },
+                  { "tipo": "task", "titulo": "Informe Campo", "fecha": "2024-02-20", "nota": 8.2 }
+                ]},
+                { "id": 2, "promedio": 8.3, "items": [
+                  { "tipo": "task", "titulo": "Cuaderno", "fecha": "2024-04-05", "nota": 8.3 },
+                  { "tipo": "exam", "titulo": "Quiz 4", "fecha": "2024-04-08", "nota": 8.4 },
+                  { "tipo": "task", "titulo": "Infografía", "fecha": "2024-04-12", "nota": 8.3 },
+                  { "tipo": "task", "titulo": "Trabajo Final", "fecha": "2024-04-18", "nota": 8.3 },
+                  { "tipo": "exam", "titulo": "Examen Final", "fecha": "2024-04-22", "nota": 8.3 }
+                ]}
+              ]}
+            ]
+          },
+          "asistencia": [
+            { "id": "N7-01", "fechaISO": "2023-10-04", "fechaLarga": "Miércoles, 4 de Octubre de 2023", "estado": "Presente" },
+            { "id": "N7-02", "fechaISO": "2023-10-11", "fechaLarga": "Miércoles, 11 de Octubre de 2023", "estado": "Presente" },
+            { "id": "N7-03", "fechaISO": "2023-10-18", "fechaLarga": "Miércoles, 18 de Octubre de 2023", "estado": "Tarde" },
+            { "id": "N7-04", "fechaISO": "2023-10-25", "fechaLarga": "Miércoles, 25 de Octubre de 2023", "estado": "Presente" },
+            { "id": "N7-05", "fechaISO": "2023-11-01", "fechaLarga": "Miércoles, 1 de Noviembre de 2023", "estado": "Ausencia Injustificada", "detalle": { "motivo": null, "comentarioProfesor": "Sin aviso." } },
+            { "id": "N7-06", "fechaISO": "2023-11-08", "fechaLarga": "Miércoles, 8 de Noviembre de 2023", "estado": "Presente" },
+            { "id": "N7-07", "fechaISO": "2023-11-15", "fechaLarga": "Miércoles, 15 de Noviembre de 2023", "estado": "Presente" },
+            { "id": "N7-08", "fechaISO": "2023-11-22", "fechaLarga": "Miércoles, 22 de Noviembre de 2023", "estado": "Tarde" },
+            { "id": "N7-09", "fechaISO": "2023-11-29", "fechaLarga": "Miércoles, 29 de Noviembre de 2023", "estado": "Presente" },
+            { "id": "N7-10", "fechaISO": "2023-12-06", "fechaLarga": "Miércoles, 6 de Diciembre de 2023", "estado": "Presente" }
+          ]
+        },
+        {
+          "key": "his",
+          "nombre": "Historia",
+          "detalleTitulo": "Historia",
+          "docente": { "nombre": "Luis Herrera", "email": "lherrera@school.com" },
+          "notificaciones": [
+            { "id": "his7-001", "titulo": "Lectura cap. 2", "fechaISO": "2023-10-06", "fechaLarga": "6 de Octubre, 2023", "cuerpo": "Edad Media.", "visto": true },
+            { "id": "his7-002", "titulo": "Ensayo corto", "fechaISO": "2023-10-15", "fechaLarga": "15 de Octubre, 2023", "cuerpo": "Tema libre.", "visto": false },
+            { "id": "his7-003", "titulo": "Debate", "fechaISO": "2023-10-22", "fechaLarga": "22 de Octubre, 2023", "cuerpo": "Grupos definidos.", "visto": true },
+            { "id": "his7-004", "titulo": "Museo local", "fechaISO": "2023-11-05", "fechaLarga": "5 de Noviembre, 2023", "cuerpo": "Autorización hasta 03/11.", "visto": true },
+            { "id": "his7-005", "titulo": "Exposición", "fechaISO": "2023-11-18", "fechaLarga": "18 de Noviembre, 2023", "cuerpo": "Equipos y temas en Aula.", "visto": false }
+          ],
+          "notas": {
+            "semestres": [
+              { "id": 1, "promedio": 8.5, "unidades": [
+                { "id": 1, "promedio": 8.6, "items": [
+                  { "tipo": "task", "titulo": "Mapa conceptual", "fecha": "2023-10-08", "nota": 8.5 },
+                  { "tipo": "exam", "titulo": "Quiz", "fecha": "2023-10-12", "nota": 8.6 },
+                  { "tipo": "task", "titulo": "Resumen", "fecha": "2023-10-15", "nota": 8.7 },
+                  { "tipo": "exam", "titulo": "Parcial", "fecha": "2023-10-20", "nota": 8.5 },
+                  { "tipo": "task", "titulo": "Trabajo", "fecha": "2023-10-25", "nota": 8.7 }
+                ]},
+                { "id": 2, "promedio": 8.4, "items": [
+                  { "tipo": "task", "titulo": "Línea del tiempo", "fecha": "2023-11-05", "nota": 8.4 },
+                  { "tipo": "exam", "titulo": "Quiz 2", "fecha": "2023-11-09", "nota": 8.5 },
+                  { "tipo": "task", "titulo": "Fichas", "fecha": "2023-11-12", "nota": 8.3 },
+                  { "tipo": "exam", "titulo": "Parcial 2", "fecha": "2023-11-16", "nota": 8.4 },
+                  { "tipo": "task", "titulo": "Crónica", "fecha": "2023-11-20", "nota": 8.4 }
+                ]}
+              ]},
+              { "id": 2, "promedio": 8.5, "unidades": [
+                { "id": 1, "promedio": 8.6, "items": [
+                  { "tipo": "task", "titulo": "Cuadro comparativo", "fecha": "2024-02-10", "nota": 8.6 },
+                  { "tipo": "exam", "titulo": "Quiz 3", "fecha": "2024-02-14", "nota": 8.6 },
+                  { "tipo": "task", "titulo": "Ensayo", "fecha": "2024-02-18", "nota": 8.6 },
+                  { "tipo": "task", "titulo": "Cuaderno", "fecha": "2024-02-22", "nota": 8.5 },
+                  { "tipo": "exam", "titulo": "Parcial", "fecha": "2024-02-28", "nota": 8.6 }
+                ]},
+                { "id": 2, "promedio": 8.4, "items": [
+                  { "tipo": "task", "titulo": "Trabajo grupal", "fecha": "2024-04-12", "nota": 8.4 },
+                  { "tipo": "exam", "titulo": "Quiz 4", "fecha": "2024-04-16", "nota": 8.4 },
+                  { "tipo": "task", "titulo": "Cuaderno", "fecha": "2024-04-20", "nota": 8.3 },
+                  { "tipo": "task", "titulo": "Fichas", "fecha": "2024-04-24", "nota": 8.4 },
+                  { "tipo": "exam", "titulo": "Examen Final", "fecha": "2024-04-28", "nota": 8.5 }
+                ]}
+              ]}
+            ]
+          },
+          "asistencia": [
+            { "id": "H7-01", "fechaISO": "2023-10-05", "fechaLarga": "Jueves, 5 de Octubre de 2023", "estado": "Presente" },
+            { "id": "H7-02", "fechaISO": "2023-10-12", "fechaLarga": "Jueves, 12 de Octubre de 2023", "estado": "Tarde" },
+            { "id": "H7-03", "fechaISO": "2023-10-19", "fechaLarga": "Jueves, 19 de Octubre de 2023", "estado": "Presente" },
+            { "id": "H7-04", "fechaISO": "2023-10-26", "fechaLarga": "Jueves, 26 de Octubre de 2023", "estado": "Presente" },
+            { "id": "H7-05", "fechaISO": "2023-11-02", "fechaLarga": "Jueves, 2 de Noviembre de 2023", "estado": "Ausencia Justificada", "detalle": { "motivo": "Cita médica", "comentarioProfesor": "Constancia adjunta." } },
+            { "id": "H7-06", "fechaISO": "2023-11-09", "fechaLarga": "Jueves, 9 de Noviembre de 2023", "estado": "Presente" },
+            { "id": "H7-07", "fechaISO": "2023-11-16", "fechaLarga": "Jueves, 16 de Noviembre de 2023", "estado": "Presente" },
+            { "id": "H7-08", "fechaISO": "2023-11-23", "fechaLarga": "Jueves, 23 de Noviembre de 2023", "estado": "Presente" },
+            { "id": "H7-09", "fechaISO": "2023-11-30", "fechaLarga": "Jueves, 30 de Noviembre de 2023", "estado": "Tarde" },
+            { "id": "H7-10", "fechaISO": "2023-12-07", "fechaLarga": "Jueves, 7 de Diciembre de 2023", "estado": "Presente" }
+          ]
+        }
+      ]
+    },
+    {
+      "anioLectivo": "2022-2023",
+      "grado": "6to EGB",
+      "paralelo": "B",
+      "rango": "Septiembre 2022 - Junio 2023",
+      "cursos": [
+        {
+          "key": "mat",
+          "nombre": "Matemáticas",
+          "detalleTitulo": "Matemáticas",
+          "docente": { "nombre": "Carolina Vega", "email": "cvega@school.com" },
+          "notificaciones": [
+            { "id": "mat6-001", "titulo": "Guía repaso", "fechaISO": "2023-02-01", "fechaLarga": "1 de Febrero, 2023", "cuerpo": "Repaso operaciones.", "visto": true },
+            { "id": "mat6-002", "titulo": "Quiz", "fechaISO": "2023-02-10", "fechaLarga": "10 de Febrero, 2023", "cuerpo": "Quiz fracciones.", "visto": true },
+            { "id": "mat6-003", "titulo": "Proyecto figuras", "fechaISO": "2023-03-01", "fechaLarga": "1 de Marzo, 2023", "cuerpo": "Traer materiales.", "visto": false },
+            { "id": "mat6-004", "titulo": "Cambio de aula", "fechaISO": "2023-03-12", "fechaLarga": "12 de Marzo, 2023", "cuerpo": "Aula 2A.", "visto": true },
+            { "id": "mat6-005", "titulo": "Parcial", "fechaISO": "2023-04-02", "fechaLarga": "2 de Abril, 2023", "cuerpo": "Parcial trimestre.", "visto": false }
+          ],
+          "notas": {
+            "semestres": [
+              { "id": 1, "promedio": 8.1, "unidades": [
+                { "id": 1, "promedio": 8.2, "items": [
+                  { "tipo": "task", "titulo": "Cuaderno", "fecha": "2022-10-10", "nota": 8.2 },
+                  { "tipo": "exam", "titulo": "Quiz 1", "fecha": "2022-10-12", "nota": 8.1 },
+                  { "tipo": "task", "titulo": "Tarea", "fecha": "2022-10-15", "nota": 8.2 },
+                  { "tipo": "exam", "titulo": "Parcial", "fecha": "2022-10-20", "nota": 8.1 },
+                  { "tipo": "task", "titulo": "Trabajo", "fecha": "2022-10-25", "nota": 8.2 }
+                ]},
+                { "id": 2, "promedio": 8.0, "items": [
+                  { "tipo": "task", "titulo": "Cuaderno", "fecha": "2022-11-05", "nota": 8.0 },
+                  { "tipo": "exam", "titulo": "Quiz 2", "fecha": "2022-11-09", "nota": 8.0 },
+                  { "tipo": "task", "titulo": "Tarea", "fecha": "2022-11-12", "nota": 8.0 },
+                  { "tipo": "exam", "titulo": "Parcial 2", "fecha": "2022-11-18", "nota": 8.0 },
+                  { "tipo": "task", "titulo": "Trabajo 2", "fecha": "2022-11-22", "nota": 8.0 }
+                ]}
+              ]},
+              { "id": 2, "promedio": 8.0, "unidades": [
+                { "id": 1, "promedio": 8.0, "items": [
+                  { "tipo": "task", "titulo": "Cuaderno", "fecha": "2023-02-02", "nota": 8.0 },
+                  { "tipo": "exam", "titulo": "Quiz 3", "fecha": "2023-02-06", "nota": 8.0 },
+                  { "tipo": "task", "titulo": "Tarea", "fecha": "2023-02-10", "nota": 8.0 },
+                  { "tipo": "exam", "titulo": "Parcial", "fecha": "2023-02-14", "nota": 8.0 },
+                  { "tipo": "task", "titulo": "Trabajo", "fecha": "2023-02-18", "nota": 8.0 }
+                ]},
+                { "id": 2, "promedio": 8.0, "items": [
+                  { "tipo": "task", "titulo": "Cuaderno", "fecha": "2023-04-04", "nota": 8.0 },
+                  { "tipo": "exam", "titulo": "Quiz final", "fecha": "2023-04-08", "nota": 8.0 },
+                  { "tipo": "task", "titulo": "Tarea", "fecha": "2023-04-12", "nota": 8.0 },
+                  { "tipo": "exam", "titulo": "Examen final", "fecha": "2023-04-18", "nota": 8.0 },
+                  { "tipo": "task", "titulo": "Proyecto", "fecha": "2023-04-22", "nota": 8.0 }
+                ]}
+              ]}
+            ]
+          },
+          "asistencia": [
+            { "id": "M6-01", "fechaISO": "2022-10-03", "fechaLarga": "Lunes, 3 de Octubre de 2022", "estado": "Presente" },
+            { "id": "M6-02", "fechaISO": "2022-10-10", "fechaLarga": "Lunes, 10 de Octubre de 2022", "estado": "Presente" },
+            { "id": "M6-03", "fechaISO": "2022-10-17", "fechaLarga": "Lunes, 17 de Octubre de 2022", "estado": "Presente" },
+            { "id": "M6-04", "fechaISO": "2022-10-24", "fechaLarga": "Lunes, 24 de Octubre de 2022", "estado": "Tarde" },
+            { "id": "M6-05", "fechaISO": "2022-10-31", "fechaLarga": "Lunes, 31 de Octubre de 2022", "estado": "Presente" },
+            { "id": "M6-06", "fechaISO": "2022-11-07", "fechaLarga": "Lunes, 7 de Noviembre de 2022", "estado": "Presente" },
+            { "id": "M6-07", "fechaISO": "2022-11-14", "fechaLarga": "Lunes, 14 de Noviembre de 2022", "estado": "Ausencia Injustificada", "detalle": { "motivo": null, "comentarioProfesor": "Falta sin aviso." } },
+            { "id": "M6-08", "fechaISO": "2022-11-21", "fechaLarga": "Lunes, 21 de Noviembre de 2022", "estado": "Presente" },
+            { "id": "M6-09", "fechaISO": "2022-11-28", "fechaLarga": "Lunes, 28 de Noviembre de 2022", "estado": "Presente" },
+            { "id": "M6-10", "fechaISO": "2022-12-05", "fechaLarga": "Lunes, 5 de Diciembre de 2022", "estado": "Presente" }
+          ]
+        },
+        {
+          "key": "nat",
+          "nombre": "Ciencias Naturales",
+          "detalleTitulo": "Ciencias Naturales",
+          "docente": { "nombre": "Ana Martínez", "email": "amartinez@school.com" },
+          "notificaciones": [
+            { "id": "nat6-001", "titulo": "Práctica", "fechaISO": "2022-10-04", "fechaLarga": "4 de Octubre, 2022", "cuerpo": "Traer bata.", "visto": true },
+            { "id": "nat6-002", "titulo": "Quiz", "fechaISO": "2022-10-12", "fechaLarga": "12 de Octubre, 2022", "cuerpo": "Quiz plantas.", "visto": true },
+            { "id": "nat6-003", "titulo": "Visita", "fechaISO": "2022-11-02", "fechaLarga": "2 de Noviembre, 2022", "cuerpo": "Jardín botánico.", "visto": true },
+            { "id": "nat6-004", "titulo": "Entrega informe", "fechaISO": "2022-11-12", "fechaLarga": "12 de Noviembre, 2022", "cuerpo": "Subir PDF.", "visto": false },
+            { "id": "nat6-005", "titulo": "Exposición", "fechaISO": "2022-11-20", "fechaLarga": "20 de Noviembre, 2022", "cuerpo": "Organizar grupos.", "visto": false }
+          ],
+          "notas": {
+            "semestres": [
+              { "id": 1, "promedio": 8.0, "unidades": [
+                { "id": 1, "promedio": 8.0, "items": [
+                  { "tipo": "task", "titulo": "Cuaderno", "fecha": "2022-10-05", "nota": 8.0 },
+                  { "tipo": "exam", "titulo": "Quiz 1", "fecha": "2022-10-08", "nota": 8.0 },
+                  { "tipo": "task", "titulo": "Tarea", "fecha": "2022-10-12", "nota": 8.0 },
+                  { "tipo": "exam", "titulo": "Parcial", "fecha": "2022-10-16", "nota": 8.0 },
+                  { "tipo": "task", "titulo": "Trabajo", "fecha": "2022-10-20", "nota": 8.0 }
+                ]},
+                { "id": 2, "promedio": 8.1, "items": [
+                  { "tipo": "task", "titulo": "Cuaderno", "fecha": "2022-11-05", "nota": 8.1 },
+                  { "tipo": "exam", "titulo": "Quiz 2", "fecha": "2022-11-08", "nota": 8.1 },
+                  { "tipo": "task", "titulo": "Tarea 2", "fecha": "2022-11-12", "nota": 8.1 },
+                  { "tipo": "exam", "titulo": "Parcial 2", "fecha": "2022-11-16", "nota": 8.1 },
+                  { "tipo": "task", "titulo": "Trabajo 2", "fecha": "2022-11-20", "nota": 8.1 }
+                ]}
+              ]},
+              { "id": 2, "promedio": 8.1, "unidades": [
+                { "id": 1, "promedio": 8.1, "items": [
+                  { "tipo": "task", "titulo": "Cuaderno", "fecha": "2023-02-01", "nota": 8.1 },
+                  { "tipo": "exam", "titulo": "Quiz 3", "fecha": "2023-02-04", "nota": 8.1 },
+                  { "tipo": "task", "titulo": "Tarea", "fecha": "2023-02-08", "nota": 8.1 },
+                  { "tipo": "exam", "titulo": "Parcial", "fecha": "2023-02-12", "nota": 8.1 },
+                  { "tipo": "task", "titulo": "Trabajo", "fecha": "2023-02-16", "nota": 8.1 }
+                ]},
+                { "id": 2, "promedio": 8.2, "items": [
+                  { "tipo": "task", "titulo": "Cuaderno", "fecha": "2023-04-05", "nota": 8.2 },
+                  { "tipo": "exam", "titulo": "Quiz final", "fecha": "2023-04-08", "nota": 8.2 },
+                  { "tipo": "task", "titulo": "Tarea", "fecha": "2023-04-12", "nota": 8.2 },
+                  { "tipo": "exam", "titulo": "Examen final", "fecha": "2023-04-18", "nota": 8.2 },
+                  { "tipo": "task", "titulo": "Proyecto", "fecha": "2023-04-22", "nota": 8.2 }
+                ]}
+              ]}
+            ]
+          },
+          "asistencia": [
+            { "id": "N6-01", "fechaISO": "2022-10-04", "fechaLarga": "Martes, 4 de Octubre de 2022", "estado": "Presente" },
+            { "id": "N6-02", "fechaISO": "2022-10-11", "fechaLarga": "Martes, 11 de Octubre de 2022", "estado": "Presente" },
+            { "id": "N6-03", "fechaISO": "2022-10-18", "fechaLarga": "Martes, 18 de Octubre de 2022", "estado": "Tarde" },
+            { "id": "N6-04", "fechaISO": "2022-10-25", "fechaLarga": "Martes, 25 de Octubre de 2022", "estado": "Presente" },
+            { "id": "N6-05", "fechaISO": "2022-11-01", "fechaLarga": "Martes, 1 de Noviembre de 2022", "estado": "Presente" },
+            { "id": "N6-06", "fechaISO": "2022-11-08", "fechaLarga": "Martes, 8 de Noviembre de 2022", "estado": "Presente" },
+            { "id": "N6-07", "fechaISO": "2022-11-15", "fechaLarga": "Martes, 15 de Noviembre de 2022", "estado": "Ausencia Injustificada", "detalle": { "motivo": null, "comentarioProfesor": "Sin aviso." } },
+            { "id": "N6-08", "fechaISO": "2022-11-22", "fechaLarga": "Martes, 22 de Noviembre de 2022", "estado": "Presente" },
+            { "id": "N6-09", "fechaISO": "2022-11-29", "fechaLarga": "Martes, 29 de Noviembre de 2022", "estado": "Presente" },
+            { "id": "N6-10", "fechaISO": "2022-12-06", "fechaLarga": "Martes, 6 de Diciembre de 2022", "estado": "Presente" }
+          ]
+        },
+        {
+          "key": "his",
+          "nombre": "Historia",
+          "detalleTitulo": "Historia",
+          "docente": { "nombre": "Luis Herrera", "email": "lherrera@school.com" },
+          "notificaciones": [
+            { "id": "his6-001", "titulo": "Lectura 1", "fechaISO": "2022-10-06", "fechaLarga": "6 de Octubre, 2022", "cuerpo": "Antigua Grecia.", "visto": true },
+            { "id": "his6-002", "titulo": "Ensayo 1", "fechaISO": "2022-10-14", "fechaLarga": "14 de Octubre, 2022", "cuerpo": "Valores cívicos.", "visto": true },
+            { "id": "his6-003", "titulo": "Debate 1", "fechaISO": "2022-10-22", "fechaLarga": "22 de Octubre, 2022", "cuerpo": "Democracia ateniense.", "visto": false },
+            { "id": "his6-004", "titulo": "Exposición", "fechaISO": "2022-11-05", "fechaLarga": "5 de Noviembre, 2022", "cuerpo": "Grupos en Aula.", "visto": true },
+            { "id": "his6-005", "titulo": "Visita museo", "fechaISO": "2022-11-20", "fechaLarga": "20 de Noviembre, 2022", "cuerpo": "Autorización requerida.", "visto": false }
+          ],
+          "notas": {
+            "semestres": [
+              { "id": 1, "promedio": 8.2, "unidades": [
+                { "id": 1, "promedio": 8.2, "items": [
+                  { "tipo": "task", "titulo": "Mapa", "fecha": "2022-10-08", "nota": 8.1 },
+                  { "tipo": "exam", "titulo": "Quiz 1", "fecha": "2022-10-12", "nota": 8.3 },
+                  { "tipo": "task", "titulo": "Resumen", "fecha": "2022-10-15", "nota": 8.2 },
+                  { "tipo": "exam", "titulo": "Parcial", "fecha": "2022-10-20", "nota": 8.1 },
+                  { "tipo": "task", "titulo": "Trabajo", "fecha": "2022-10-25", "nota": 8.2 }
+                ]},
+                { "id": 2, "promedio": 8.3, "items": [
+                  { "tipo": "task", "titulo": "Línea tiempo", "fecha": "2022-11-05", "nota": 8.2 },
+                  { "tipo": "exam", "titulo": "Quiz 2", "fecha": "2022-11-09", "nota": 8.4 },
+                  { "tipo": "task", "titulo": "Fichas", "fecha": "2022-11-12", "nota": 8.3 },
+                  { "tipo": "exam", "titulo": "Parcial 2", "fecha": "2022-11-16", "nota": 8.3 },
+                  { "tipo": "task", "titulo": "Crónica", "fecha": "2022-11-20", "nota": 8.3 }
+                ]}
+              ]},
+              { "id": 2, "promedio": 8.3, "unidades": [
+                { "id": 1, "promedio": 8.3, "items": [
+                  { "tipo": "task", "titulo": "Cuadro comparativo", "fecha": "2023-02-10", "nota": 8.3 },
+                  { "tipo": "exam", "titulo": "Quiz 3", "fecha": "2023-02-14", "nota": 8.3 },
+                  { "tipo": "task", "titulo": "Ensayo", "fecha": "2023-02-18", "nota": 8.3 },
+                  { "tipo": "task", "titulo": "Cuaderno", "fecha": "2023-02-22", "nota": 8.2 },
+                  { "tipo": "exam", "titulo": "Parcial", "fecha": "2023-02-28", "nota": 8.4 }
+                ]},
+                { "id": 2, "promedio": 8.3, "items": [
+                  { "tipo": "task", "titulo": "Trabajo grupal", "fecha": "2023-04-12", "nota": 8.3 },
+                  { "tipo": "exam", "titulo": "Quiz 4", "fecha": "2023-04-16", "nota": 8.3 },
+                  { "tipo": "task", "titulo": "Cuaderno", "fecha": "2023-04-20", "nota": 8.3 },
+                  { "tipo": "task", "titulo": "Fichas", "fecha": "2023-04-24", "nota": 8.2 },
+                  { "tipo": "exam", "titulo": "Examen Final", "fecha": "2023-04-28", "nota": 8.4 }
+                ]}
+              ]}
+            ]
+          },
+          "asistencia": [
+            { "id": "H6-01", "fechaISO": "2022-10-06", "fechaLarga": "Jueves, 6 de Octubre de 2022", "estado": "Presente" },
+            { "id": "H6-02", "fechaISO": "2022-10-13", "fechaLarga": "Jueves, 13 de Octubre de 2022", "estado": "Tarde" },
+            { "id": "H6-03", "fechaISO": "2022-10-20", "fechaLarga": "Jueves, 20 de Octubre de 2022", "estado": "Presente" },
+            { "id": "H6-04", "fechaISO": "2022-10-27", "fechaLarga": "Jueves, 27 de Octubre de 2022", "estado": "Presente" },
+            { "id": "H6-05", "fechaISO": "2022-11-03", "fechaLarga": "Jueves, 3 de Noviembre de 2022", "estado": "Presente" },
+            { "id": "H6-06", "fechaISO": "2022-11-10", "fechaLarga": "Jueves, 10 de Noviembre de 2022", "estado": "Presente" },
+            { "id": "H6-07", "fechaISO": "2022-11-17", "fechaLarga": "Jueves, 17 de Noviembre de 2022", "estado": "Ausencia Justificada", "detalle": { "motivo": "Cita médica", "comentarioProfesor": "Constancia." } },
+            { "id": "H6-08", "fechaISO": "2022-11-24", "fechaLarga": "Jueves, 24 de Noviembre de 2022", "estado": "Presente" },
+            { "id": "H6-09", "fechaISO": "2022-12-01", "fechaLarga": "Jueves, 1 de Diciembre de 2022", "estado": "Presente" },
+            { "id": "H6-10", "fechaISO": "2022-12-08", "fechaLarga": "Jueves, 8 de Diciembre de 2022", "estado": "Presente" }
+          ]
+        }
+      ]
+    }
+  ]
+}

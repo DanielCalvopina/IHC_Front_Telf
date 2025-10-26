@@ -1,11 +1,7 @@
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native'; // <-- importamos navigation
-import { Image } from 'expo-image';
-import React from 'react';
-import { StyleSheet, TouchableOpacity, useColorScheme } from 'react-native';
+import React from "react";
+import { View, Text, Image, Pressable, StyleSheet } from "react-native";
+import { Link } from "expo-router";
+import data from "./../../../datosEstudiante.json";
 
 export default function HomeScreen() {
   const colorScheme = useColorScheme();
@@ -26,77 +22,29 @@ export default function HomeScreen() {
 
   // Navegar a la pantalla de Año Lectivo
   const handleDetailsPress = () => {
-    navigation.navigate('app\pages\estudiantes\año lectivo\anios-lectivos.tsx'); // <-- nombre de la pantalla en tu navigator
+    navigation.navigate('AnioLectivo'); // <-- nombre de la pantalla en tu navigator
   };
 
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#fff', dark: '#030912' }}
-      style={{ backgroundColor: colorScheme === 'dark' ? '#030912' : '#fff' }}
-      headerImage={
-        <Image
-          source={logoSource}
-          style={currentStyles.logo}
-          accessibilityLabel="Logo de EduConnect"
-        />
-      }
-    >
-      <ThemedView style={currentStyles.container}>
-        <ThemedText type="title" style={currentStyles.title}>
-          Información de sus Hijos
-        </ThemedText>
+    <View style={st.wrap}>
+      <Image source={{ uri: s.avatar }} style={st.avatar} />
+      <Text style={st.name}>{s.nombre}</Text>
+      <Text style={st.sub}>{s.cursoActual.label}</Text>
 
-        <ThemedView style={currentStyles.card}>
-          <Ionicons
-            name="person-circle-outline"
-            size={80}
-            color="#fff"
-            style={currentStyles.icon}
-          />
-
-          <ThemedView style={currentStyles.infoContainer}>
-            <ThemedText type="subtitle" style={currentStyles.name}>
-              {student.nombre}
-            </ThemedText>
-
-            <ThemedText type="default" style={currentStyles.infoText}>
-              <ThemedText type="defaultSemiBold" style={currentStyles.boldText}>
-                ID:{' '}
-              </ThemedText>
-              {student.id}
-            </ThemedText>
-
-            <ThemedText type="default" style={currentStyles.infoText}>
-              <ThemedText type="defaultSemiBold" style={currentStyles.boldText}>
-                Curso:{' '}
-              </ThemedText>
-              {student.curso}
-            </ThemedText>
-
-            <ThemedText type="default" style={currentStyles.infoText}>
-              <ThemedText type="defaultSemiBold" style={currentStyles.boldText}>
-                Tutor:{' '}
-              </ThemedText>
-              {student.tutor}
-            </ThemedText>
-
-            {/* Botón Detalles */}
-            <TouchableOpacity
-              style={currentStyles.detailsButton}
-              onPress={handleDetailsPress}
-            >
-              <ThemedText type="defaultSemiBold" style={currentStyles.detailsButtonText}>
-                Detalles
-              </ThemedText>
-            </TouchableOpacity>
-          </ThemedView>
-        </ThemedView>
-      </ThemedView>
-    </ParallaxScrollView>
+      <Link
+        href={{
+          pathname: "/(tabs)/pages/estudiantes/detailEstudent",
+          params: { year: y },
+        }}
+        asChild
+      >
+        <Pressable style={st.btn}><Text style={st.btnTxt}>Ver detalle</Text></Pressable>
+      </Link>
+    </View>
   );
 }
 
-const styles = (colorScheme: string | null | undefined) =>
+const styles = (colorScheme) =>
   StyleSheet.create({
     logo: {
       height: 180,
