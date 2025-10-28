@@ -1,5 +1,14 @@
 import React, { useMemo, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Pressable,
+  SafeAreaView,
+  StatusBar,
+  Platform,
+} from "react-native";
 import { Link } from "expo-router";
 
 // ⚠️ Importa los JSON con rutas relativas desde (tabs)/home
@@ -35,7 +44,6 @@ export default function NotificacionesScreen() {
   const currentYear = data.student?.cursoActual?.anioLectivo ?? "";
   const añoActual = data.aniosLectivos.find(a => a.anioLectivo === currentYear);
 
-  // 1) Notificaciones por curso (año actual)
   const cursoNotifs: CursoNotif[] = useMemo(() => {
     if (!añoActual) return [];
     return (añoActual.cursos ?? []).flatMap(curso =>
@@ -54,7 +62,6 @@ export default function NotificacionesScreen() {
     );
   }, [añoActual]);
 
-  // 2) Notificaciones generales del colegio
   const colegioNotifs: ColegioNotif[] = useMemo(() => {
     const arr = dataColegio?.colegio ?? [];
     return arr.map(n => ({
@@ -68,7 +75,6 @@ export default function NotificacionesScreen() {
     }));
   }, []);
 
-  // 3) Mezcla ordenada por fecha (recientes primero)
   const inicial = useMemo<Item[]>(() => {
     const mix = [...cursoNotifs, ...colegioNotifs];
     return mix.sort((a, b) => (a.fechaISO < b.fechaISO ? 1 : -1));
@@ -82,8 +88,10 @@ export default function NotificacionesScreen() {
   const toggleLeido = (id: string) =>
     setItems(prev => prev.map(n => (n.id === id ? { ...n, visto: !n.visto } : n)));
 
+  const statusBarHeight = Platform.OS === "android" ? StatusBar.currentHeight ?? 0 : 0;
+
   return (
-    <View style={{ flex: 1, backgroundColor: "#F6F7F8" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
       {/* Header */}
       <View style={st.header}>
         <Link href="/(tabs)/home" asChild>
@@ -111,7 +119,6 @@ export default function NotificacionesScreen() {
               </View>
             </View>
 
-            {/* Contexto (si es de curso) */}
             {"scope" in n && n.scope === "curso" && (
               <Text style={st.badgeCtx}>Materia: {n.courseName}</Text>
             )}
@@ -119,10 +126,8 @@ export default function NotificacionesScreen() {
             <Text style={st.body}>{n.cuerpo}</Text>
 
             <View style={{ flexDirection: "row", gap: 8, marginTop: 10 }}>
-              {/* alternar leído */}
               <Pressable
                 onPress={() => toggleLeido(n.id)}
-                
                 style={[st.badge, n.visto ? st.badgeOk : st.badgeWarn]}
               >
                 <Text style={n.visto ? st.badgeOkTxt : st.badgeWarnTxt}>
@@ -130,7 +135,6 @@ export default function NotificacionesScreen() {
                 </Text>
               </Pressable>
 
-              {/* Navegar al detalle de notificaciones del curso (si aplica) */}
               {"scope" in n && n.scope === "curso" && (
                 <Link
                   href={{
@@ -148,14 +152,14 @@ export default function NotificacionesScreen() {
           </View>
         ))}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const st = StyleSheet.create({
   header:{height:56,flexDirection:"row",alignItems:"center",justifyContent:"space-between",paddingHorizontal:12,backgroundColor:"#0D47A1"},
   icon:{width:56,height:56,alignItems:"center",justifyContent:"center"},
-  iconTxt:{fontSize:22,color:"#fff",fontWeight:"700"},
+  iconTxt:{fontSize:28,color:"#fff",fontWeight:"700"},
   title:{color:"#fff",fontWeight:"800",fontSize:16},
 
   primary:{height:44,backgroundColor:"#005A9C",borderRadius:10,alignItems:"center",justifyContent:"center"},
@@ -172,10 +176,8 @@ const st = StyleSheet.create({
   badgeWarn:{backgroundColor:"#FEF3C7"}, badgeWarnTxt:{color:"#92400E",fontWeight:"800"},
   badgeOk:{backgroundColor:"#DCFCE7"}, badgeOkTxt:{color:"#166534",fontWeight:"800"},
 
-  // contexto de curso
   badgeCtx:{marginTop:4,alignSelf:"flex-start",backgroundColor:"#E6F0FA",color:"#005A9C",fontWeight:"800",paddingHorizontal:10,paddingVertical:4,borderRadius:999,fontSize:12},
 
-  // botón ir al curso
   ghostBtn:{backgroundColor:"#E6F0FA",borderRadius:10,paddingHorizontal:12,height:36,alignItems:"center",justifyContent:"center"},
   ghostBtnTxt:{color:"#005A9C",fontWeight:"800"},
 });

@@ -1,5 +1,15 @@
 import React from "react";
-import { View, Text, Image, Pressable, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+  StatusBar,
+  Platform,
+} from "react-native";
 import { Link, useLocalSearchParams } from "expo-router";
 import data from "../../../datosEstudiante.json";
 
@@ -10,27 +20,28 @@ export default function DetailCurso() {
   const y = data.aniosLectivos.find(a => a.anioLectivo === year);
   const c = y?.cursos.find(cc => cc.key === courseKey);
 
+  const statusBarHeight = Platform.OS === "android" ? StatusBar.currentHeight ?? 0 : 0;
+
   if (!y || !c) {
     return (
-      <View style={st.center}>
-        <Text>Curso no encontrado</Text>
-      </View>
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
+        <View style={st.center}>
+          <Text>Curso no encontrado</Text>
+        </View>
+      </SafeAreaView>
     );
   }
 
-  // Calificaciones (resumen)
   const s1 = c.notas.semestres.find(s => s.id === 1)?.promedio ?? 0;
   const s2 = c.notas.semestres.find(s => s.id === 2)?.promedio ?? 0;
   const prom = Number(((s1 + s2) / 2).toFixed(1));
 
-  // Asistencia (resumen)
   const asist = c.asistencia ?? [];
   const presentes = asist.filter(a => a.estado === "Presente").length;
   const pct = asist.length ? Math.round((presentes / asist.length) * 100) : 100;
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#F6F7F8" }}>
-      {/* Header */}
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
       <View style={st.header}>
         <Link
           href={{ pathname: "/pages/estudiantes/cursos/todosLosCursos", params: { year } }}
@@ -122,7 +133,7 @@ export default function DetailCurso() {
           </View>
         </View>
 
-        {/* Asistencia (resumen + botón) */}
+        {/* Asistencia */}
         <View style={{ paddingHorizontal: 16 }}>
           <View style={st.card}>
             <View style={st.rowBetween}>
@@ -148,7 +159,7 @@ export default function DetailCurso() {
           </View>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 

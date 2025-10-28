@@ -1,6 +1,14 @@
-// app/(tabs)/pages/estudiantes/cursos/notificaciones/detailNotificaciones.tsx
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  ScrollView,
+  SafeAreaView,
+  StatusBar,
+  Platform,
+} from "react-native";
 import { Link, useLocalSearchParams } from "expo-router";
 import data from "../../../../datosEstudiante.json";
 
@@ -24,16 +32,20 @@ export default function DetailNotificaciones() {
     () => (c?.notificaciones as NotificationItem[]) ?? []
   );
 
+  const statusBarHeight = Platform.OS === "android" ? StatusBar.currentHeight ?? 0 : 0;
+
   if (!y || !c) {
     return (
-      <View style={st.center}>
-        <Text>Sin datos</Text>
-      </View>
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
+        <View style={st.center}>
+          <Text>Sin datos</Text>
+        </View>
+      </SafeAreaView>
     );
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#F6F7F8" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
       {/* Header */}
       <View style={st.header}>
         <Link
@@ -82,7 +94,7 @@ export default function DetailNotificaciones() {
           </View>
         ))}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 

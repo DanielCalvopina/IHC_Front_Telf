@@ -1,5 +1,15 @@
 import React, { useMemo } from "react";
-import { View, Text, Image, Pressable, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+  StatusBar,
+  Platform,
+} from "react-native";
 import { Link } from "expo-router";
 import data from "../../datosEstudiante.json";
 
@@ -16,7 +26,6 @@ export default function HomeScreen() {
   const yActual = s.cursoActual?.anioLectivo;
   const yData = data.aniosLectivos.find((y) => y.anioLectivo === yActual);
 
-  // Notas rápidas: hasta 3 cursos y promedio (s1+s2)/2 en NÚMERO
   const notasRecientes = useMemo(() => {
     if (!yData) return [];
     return yData.cursos.slice(0, 3).map((c) => {
@@ -27,11 +36,10 @@ export default function HomeScreen() {
     });
   }, [yData]);
 
-  // Colorear por rango NUMÉRICO
   const colorByScore = (n: number) => {
-    if (n >= 9) return { color: "#16A34A" };      // verde
-    if (n >= 7) return { color: "#F59E0B" };      // naranja
-    return { color: "#EF4444" };                  // rojo
+    if (n >= 9) return { color: "#16A34A" };
+    if (n >= 7) return { color: "#F59E0B" };
+    return { color: "#EF4444" };
   };
 
   const anuncios = [
@@ -39,10 +47,10 @@ export default function HomeScreen() {
     { id: "a2", titulo: "Simulacro de evacuación", cuerpo: "Viernes 10:30. Llegar puntuales." },
   ];
 
-  return (
-    <View style={{ flex: 1, backgroundColor: "#F6F7F8" }}>
-      {/* Header simple */}
+  const statusBarHeight = Platform.OS === "android" ? StatusBar.currentHeight ?? 0 : 0;
 
+  return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
       <ScrollView contentContainerStyle={{ padding: 14, gap: 14 }}>
         {/* Mis Hijos */}
         <View style={st.card}>
@@ -54,7 +62,7 @@ export default function HomeScreen() {
             </View>
           </View>
 
-          {/* Notas Recientes (numéricas) */}
+          {/* Notas Recientes */}
           <Text style={st.blockTitle}>Notas recientes</Text>
           <ScrollView
             horizontal
@@ -74,7 +82,7 @@ export default function HomeScreen() {
             )}
           </ScrollView>
 
-          {/* CTA → Cursos y Años lectivos */}
+          {/* Botones */}
           <View style={{ gap: 8, marginTop: 8 }}>
             {yActual && (
               <Link
@@ -97,7 +105,7 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        {/* Anuncios Generales */}
+        {/* Anuncios */}
         <Text style={st.sectionTitle}>Anuncios Generales</Text>
         <View style={st.notice}>
           {anuncios.map((a) => (
@@ -111,7 +119,7 @@ export default function HomeScreen() {
           ))}
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 

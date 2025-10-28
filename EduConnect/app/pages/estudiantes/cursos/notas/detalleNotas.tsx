@@ -1,6 +1,14 @@
-// app/(tabs)/pages/estudiantes/cursos/notas/detalleNotas.tsx
 import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, Pressable, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+  StatusBar,
+  Platform,
+} from "react-native";
 import { Link, useLocalSearchParams } from "expo-router";
 import data from "../../../../datosEstudiante.json";
 
@@ -12,35 +20,30 @@ export default function DetalleNotas() {
   const y = data.aniosLectivos.find((a) => a.anioLectivo === year);
   const c = y?.cursos.find((cc) => cc.key === courseKey);
 
-  // Semestre inicial (1 o 2)
   const initialSem: 1 | 2 = (Number(semestre ?? "1") === 2 ? 2 : 1) as 1 | 2;
   const [sem, setSem] = useState<1 | 2>(initialSem);
 
+  const statusBarHeight = Platform.OS === "android" ? StatusBar.currentHeight ?? 0 : 0;
+
   if (!y || !c) {
     return (
-      <View style={st.center}>
-        <Text>Sin datos</Text>
-      </View>
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
+        <View style={st.center}>
+          <Text>Sin datos</Text>
+        </View>
+      </SafeAreaView>
     );
   }
 
   const semestres = c.notas.semestres ?? [];
-
-  // Datos del semestre seleccionado
-  const semData = useMemo(
-    () => semestres.find((s) => s.id === sem),
-    [sem, semestres]
-  );
-
+  const semData = useMemo(() => semestres.find((s) => s.id === sem), [sem, semestres]);
   const unidades = semData?.unidades ?? [];
 
-  // Unidad seleccionada (se resetea cuando cambia el semestre)
   const [unidad, setUnidad] = useState<number>(unidades[0]?.id ?? 1);
   useEffect(() => {
     setUnidad(unidades[0]?.id ?? 1);
-  }, [sem, unidades.length]); // se recalcula cuando cambia semestre o # de unidades
+  }, [sem, unidades.length]);
 
-  // Ítems de la unidad seleccionada (ordenados por fecha asc)
   const items = useMemo(() => {
     const list = unidades.find((u) => u.id === unidad)?.items ?? [];
     return [...list].sort(
@@ -51,8 +54,7 @@ export default function DetalleNotas() {
   const promU = unidades.find((u) => u.id === unidad)?.promedio ?? 0;
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#F6F7F8" }}>
-      {/* Header */}
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
       <View style={st.header}>
         <Link
           href={{
@@ -70,13 +72,11 @@ export default function DetalleNotas() {
       </View>
 
       <ScrollView contentContainerStyle={{ paddingBottom: 16 }}>
-        {/* Encabezado materia / estudiante */}
         <View style={{ paddingHorizontal: 16, paddingTop: 12 }}>
           <Text style={st.big}>{c.nombre}</Text>
           <Text style={st.muted}>{data.student.nombre}</Text>
         </View>
 
-        {/* Selector de semestre */}
         <View style={{ paddingHorizontal: 16, marginTop: 10 }}>
           <View style={st.segment}>
             <Pressable
@@ -98,7 +98,6 @@ export default function DetalleNotas() {
           </View>
         </View>
 
-        {/* Chips de unidades */}
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -130,7 +129,6 @@ export default function DetalleNotas() {
           )}
         </ScrollView>
 
-        {/* Promedio de la unidad */}
         <View style={{ paddingHorizontal: 16, paddingTop: 12 }}>
           <View style={st.avgCard}>
             <Text style={st.avgLabel}>Promedio Unidad {unidad}</Text>
@@ -138,7 +136,6 @@ export default function DetalleNotas() {
           </View>
         </View>
 
-        {/* Lista de ítems */}
         <View style={{ paddingHorizontal: 16, paddingTop: 6 }}>
           <Text style={st.listTitle}>Calificaciones Unidad {unidad}</Text>
         </View>
@@ -173,7 +170,7 @@ export default function DetalleNotas() {
           )}
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 
