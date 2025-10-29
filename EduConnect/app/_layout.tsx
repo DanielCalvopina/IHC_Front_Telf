@@ -1,31 +1,32 @@
-import { Slot, useFocusEffect, useRouter, useSegments } from 'expo-router';
-import { useCallback } from 'react';
-import { BackHandler } from 'react-native';
+import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import 'react-native-reanimated';
 
-export default function Layout() {
-  const router = useRouter();
-  const segments = useSegments(); // Ejemplo: ['(tabs)', 'home'] o ['pages', 'estudiantes']
+import { useColorScheme } from '@/hooks/use-color-scheme';
 
-  useFocusEffect(
-    useCallback(() => {
-      const onBackPress = () => {
-        // Verifica si estás en la pantalla principal
-        const isInHome = segments.length >= 2 && segments[0] === '(tabs)' && segments[1] === 'home';
+export const unstable_settings = {
+  anchor: '(tabs)',
+};
 
-        if (!isInHome) {
-          // Si no estás en Home, vuelve directamente a ella
-          router.replace('/(tabs)/home');
-          return true; // Evita el comportamiento normal del botón
-        }
+export default function RootLayout() {
+  const colorScheme = useColorScheme();
 
-        // Si estás en Home, deja que el sistema maneje el back (salir/minimizar)
-        return false;
-      };
+  return (
+    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <Stack screenOptions={{ headerShown: false }}>
+        {/* Pantallas sin menú inferior */}
+        <Stack.Screen name="index" />
+        <Stack.Screen name="login" />
+        <Stack.Screen name="crear_cuenta" />
 
-      const backHandler = BackHandler.addEventListener('hardwareBackPress', onBackPress);
-      return () => backHandler.remove();
-    }, [segments, router])
+        {/* Grupo con menú inferior */}
+        <Stack.Screen name="(tabs)" />
+
+        {/* Modal opcional */}
+        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+      </Stack>
+      <StatusBar style="auto" />
+    </ThemeProvider>
   );
-
-  return <Slot />;
 }
