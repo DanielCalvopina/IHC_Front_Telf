@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
   View,
   Text,
@@ -8,17 +8,33 @@ import {
   SafeAreaView,
   StatusBar,
   Platform,
+  BackHandler,
 } from "react-native";
-import { Link, useLocalSearchParams } from "expo-router";
+import { Link, useLocalSearchParams, useFocusEffect, router } from "expo-router";
 import data from "../../../datosEstudiante.json";
 
 type P = { year: string };
 
 export default function TodosLosCursos() {
   const { year } = useLocalSearchParams<P>();
-  const y = data.aniosLectivos.find(a => a.anioLectivo === year);
+  const y = data.aniosLectivos.find((a) => a.anioLectivo === year);
 
   const statusBarHeight = Platform.OS === "android" ? StatusBar.currentHeight ?? 0 : 0;
+
+  // ⬇️ Intercepta el botón físico "Atrás" y redirige SIEMPRE a detailEstudent del MISMO año
+  useFocusEffect(
+    useCallback(() => {
+      const onBack = () => {
+        router.replace({
+          pathname: "/pages/estudiantes/detailEstudent",
+          params: { year: String(year) },
+        });
+        return true; // consumimos el evento (evita ir a Home)
+      };
+      const sub = BackHandler.addEventListener("hardwareBackPress", onBack);
+      return () => sub.remove();
+    }, [year])
+  );
 
   if (!y) {
     return (
@@ -33,6 +49,7 @@ export default function TodosLosCursos() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
       <View style={st.header}>
+        {/* Flecha: también vuelve a detailEstudent del MISMO año */}
         <Link
           href={{ pathname: "/pages/estudiantes/detailEstudent", params: { year: String(year) } }}
           replace
@@ -42,7 +59,7 @@ export default function TodosLosCursos() {
             style={st.icon}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             accessibilityRole="button"
-            accessibilityLabel="Regresar"
+            accessibilityLabel="Regresar a Año lectivo"
           >
             <Text style={st.iconTxt}>←</Text>
           </Pressable>
@@ -52,7 +69,7 @@ export default function TodosLosCursos() {
       </View>
 
       <ScrollView contentContainerStyle={{ padding: 16, gap: 12 }}>
-        {y.cursos.map(c => (
+        {y.cursos.map((c) => (
           <View key={c.key} style={st.card}>
             <Text style={st.course}>{c.nombre}</Text>
             <Link
