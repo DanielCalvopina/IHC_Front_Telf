@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// app/pages/estudiantes/cursos/notificaciones/detailNotificaciones.tsx
+import React from "react";
 import {
   View,
   Text,
@@ -8,8 +9,9 @@ import {
   SafeAreaView,
   StatusBar,
   Platform,
+  BackHandler,
 } from "react-native";
-import { Link, useLocalSearchParams } from "expo-router";
+import { Link, useLocalSearchParams, router, type Href } from "expo-router";
 import data from "../../../../datosEstudiante.json";
 
 type P = { year: string; courseKey: string };
@@ -28,15 +30,18 @@ export default function DetailNotificaciones() {
   const y = data.aniosLectivos.find((a) => a.anioLectivo === year);
   const c = y?.cursos.find((cc) => cc.key === courseKey);
 
-  const [items, setItems] = useState<NotificationItem[]>(
+  const [items, setItems] = React.useState<NotificationItem[]>(
     () => (c?.notificaciones as NotificationItem[]) ?? []
   );
 
-  const statusBarHeight = Platform.OS === "android" ? StatusBar.currentHeight ?? 0 : 0;
+  const statusBarHeight =
+    Platform.OS === "android" ? StatusBar.currentHeight ?? 0 : 0;
 
   if (!y || !c) {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
+      <SafeAreaView
+        style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}
+      >
         <View style={st.center}>
           <Text>Sin datos</Text>
         </View>
@@ -44,19 +49,32 @@ export default function DetailNotificaciones() {
     );
   }
 
+  // Hardware Back → volver siempre al Detalle del Curso (no a Home)
+  React.useEffect(() => {
+    const onBack = () => {
+      router.replace({
+        pathname: "/pages/estudiantes/cursos/detailCurso",
+        params: { year: String(year), courseKey: String(courseKey) },
+      });
+      return true;
+    };
+    const sub = BackHandler.addEventListener("hardwareBackPress", onBack);
+    return () => sub.remove();
+  }, [year, courseKey]);
+
+  const backHref: Href = {
+    pathname: "/pages/estudiantes/cursos/detailCurso",
+    params: { year: String(year), courseKey: String(courseKey) },
+  };
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}
+    >
       {/* Header */}
       <View style={st.header}>
-        <Link
-          href={{
-            pathname: "/pages/estudiantes/cursos/detailCurso",
-            params: { year: String(year), courseKey: String(courseKey) },
-          }}
-          replace
-          asChild
-        >
-          <Pressable style={st.icon}>
+        <Link href={backHref} replace asChild>
+          <Pressable style={st.icon} hitSlop={10} accessibilityRole="button" accessibilityLabel="Regresar">
             <Text style={st.iconTxt}>←</Text>
           </Pressable>
         </Link>

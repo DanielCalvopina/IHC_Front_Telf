@@ -2,13 +2,13 @@
   "padre": {
     "id": "PF-001",
     "nombre": "Nombre del Padre",
-    "cedula": "1723456789",
+    "cedula": "1725094070",
     "correo": "padre@email.com",
     "telefono": "+1 234 567 890",
     "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuBWUawIu_HkuzEp9191yKmZyhmzZyZ2pP_qlgYbOkKM6OiiiKfvYPNcTAp6ObNc1ToX0LOl6ebgIw0IsyIDuB5Rw_E8fi9-PgA-QTNywUl_8JQPVRqeJ_i6eTEsZ630cJsLvmO6oLqgtd-Ut4IIG4ID91pMdyIs-JCPWaacHIt61_Fja1ZXyJbHp6v73b5X4GlzbkpuErX07o1xpYCm1vOPDNXNq7mtK0ALuMayDqgxpT2lPMl0bbJekPV2-9LluEU0jgkjbDbzbXc",
     "direccion": "Av. Los Álamos N10-25, Quito",
     "credenciales": {
-      "usuario": "1725094070",
+      "usuario": "admin",
       "password": "admin"
     }
   },

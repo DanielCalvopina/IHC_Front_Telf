@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
   View,
   Text,
@@ -9,22 +9,31 @@ import {
   SafeAreaView,
   StatusBar,
   Platform,
+  BackHandler,
 } from "react-native";
-import { Link, useLocalSearchParams } from "expo-router";
+import {
+  Link,
+  useLocalSearchParams,
+  useFocusEffect,
+  router,
+} from "expo-router";
 import data from "../../../datosEstudiante.json";
 
 type P = { year: string; courseKey: string };
 
 export default function DetailCurso() {
   const { year, courseKey } = useLocalSearchParams<P>();
-  const y = data.aniosLectivos.find(a => a.anioLectivo === year);
-  const c = y?.cursos.find(cc => cc.key === courseKey);
+  const y = data.aniosLectivos.find((a) => a.anioLectivo === year);
+  const c = y?.cursos.find((cc) => cc.key === courseKey);
 
-  const statusBarHeight = Platform.OS === "android" ? StatusBar.currentHeight ?? 0 : 0;
+  const statusBarHeight =
+    Platform.OS === "android" ? StatusBar.currentHeight ?? 0 : 0;
 
   if (!y || !c) {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
+      <SafeAreaView
+        style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}
+      >
         <View style={st.center}>
           <Text>Curso no encontrado</Text>
         </View>
@@ -32,31 +41,52 @@ export default function DetailCurso() {
     );
   }
 
-  const s1 = c.notas.semestres.find(s => s.id === 1)?.promedio ?? 0;
-  const s2 = c.notas.semestres.find(s => s.id === 2)?.promedio ?? 0;
+  const s1 = c.notas.semestres.find((s) => s.id === 1)?.promedio ?? 0;
+  const s2 = c.notas.semestres.find((s) => s.id === 2)?.promedio ?? 0;
   const prom = Number(((s1 + s2) / 2).toFixed(1));
 
   const asist = c.asistencia ?? [];
-  const presentes = asist.filter(a => a.estado === "Presente").length;
+  const presentes = asist.filter((a) => a.estado === "Presente").length;
   const pct = asist.length ? Math.round((presentes / asist.length) * 100) : 100;
 
+  // ⬇️ Intercepta el botón físico Atrás y manda SIEMPRE a la lista de cursos del mismo año
+  useFocusEffect(
+    useCallback(() => {
+      const onBack = () => {
+        router.replace({
+          pathname: "/pages/estudiantes/cursos/todosLosCursos",
+          params: { year: String(year) },
+        });
+        return true; // consumimos el evento
+      };
+      const sub = BackHandler.addEventListener("hardwareBackPress", onBack);
+      return () => sub.remove();
+    }, [year])
+  );
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}
+    >
       <View style={st.header}>
-          <Link
-            href={{ pathname: "/pages/estudiantes/cursos/todosLosCursos", params: { year: String(year) } }}
-            replace
-            asChild
+        {/* Flecha: también vuelve a la lista de cursos del MISMO año */}
+        <Link
+          href={{
+            pathname: "/pages/estudiantes/cursos/todosLosCursos",
+            params: { year: String(year) },
+          }}
+          replace
+          asChild
+        >
+          <Pressable
+            style={st.icon}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            accessibilityRole="button"
+            accessibilityLabel="Regresar a cursos"
           >
-            <Pressable
-              style={st.icon}
-              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-              accessibilityRole="button"
-              accessibilityLabel="Regresar"
-            >
-              <Text style={st.iconTxt}>←</Text>
-            </Pressable>
-          </Link>
+            <Text style={st.iconTxt}>←</Text>
+          </Pressable>
+        </Link>
         <Text style={st.title}>{c.detalleTitulo || c.nombre}</Text>
         <View style={{ width: 56 }} />
       </View>
@@ -90,8 +120,9 @@ export default function DetailCurso() {
             <Link
               href={{
                 pathname: "/pages/estudiantes/cursos/notificaciones/detailNotificaciones",
-                params: { year, courseKey },
+                params: { year: String(year), courseKey: String(courseKey) },
               }}
+              replace
               asChild
             >
               <Pressable style={st.primary}>
@@ -115,8 +146,13 @@ export default function DetailCurso() {
                   key={s.id}
                   href={{
                     pathname: "/pages/estudiantes/cursos/notas/detalleNotas",
-                    params: { year, courseKey, semestre: String(s.id) },
+                    params: {
+                      year: String(year),
+                      courseKey: String(courseKey),
+                      semestre: String(s.id),
+                    },
                   }}
+                  replace
                   asChild
                 >
                   <Pressable style={st.item}>
@@ -158,7 +194,6 @@ export default function DetailCurso() {
                 <Text style={st.secondaryTxt}>Ver lista / detalles</Text>
               </Pressable>
             </Link>
-
           </View>
         </View>
       </ScrollView>
@@ -177,7 +212,6 @@ const st = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#E5E7EB",
   },
-  // botón back más grande/visible
   icon: {
     width: 56,
     height: 56,
@@ -189,7 +223,6 @@ const st = StyleSheet.create({
   title: { fontSize: 18, fontWeight: "800", color: "#0F172A" },
   center: { flex: 1, alignItems: "center", justifyContent: "center" },
 
-  // Profesor
   teacher: {
     backgroundColor: "#fff",
     borderRadius: 16,
@@ -205,7 +238,6 @@ const st = StyleSheet.create({
   teacherMail: { color: "#64748B" },
   avatar: { width: 96, height: 96, borderRadius: 999, backgroundColor: "#E5E7EB", flex: 1 },
 
-  // Notificaciones
   box: {
     backgroundColor: "#fff",
     borderRadius: 16,
@@ -226,7 +258,6 @@ const st = StyleSheet.create({
   },
   primaryTxt: { color: "#fff", fontWeight: "800" },
 
-  // Tarjetas
   card: {
     backgroundColor: "#fff",
     borderRadius: 16,
@@ -252,7 +283,6 @@ const st = StyleSheet.create({
   itemS: { color: "#64748B", marginTop: 2 },
   arrow: { color: "#005A9C", fontSize: 22, fontWeight: "900" },
 
-  // Asistencia
   barWrap: {
     height: 10,
     borderRadius: 999,

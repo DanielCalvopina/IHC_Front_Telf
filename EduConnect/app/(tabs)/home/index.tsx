@@ -17,7 +17,6 @@ import data from "../../datosEstudiante.json";
  * Home de Padres
  * - Mis Hijos (usa datosEstudiante.json)
  * - Notas recientes (promedios rápidos por materia del año actual) → NUMÉRICAS
- * - Botón "Ver Años Lectivos"
  * - Anuncios generales (mock corto)
  */
 
@@ -82,18 +81,8 @@ export default function HomeScreen() {
             )}
           </ScrollView>
 
-          {/* Botones */}
+          {/* Botón (dejamos solo "Visualizar años lectivos") */}
           <View style={{ gap: 8, marginTop: 8 }}>
-            {yActual && (
-              <Link
-                href={{ pathname: "/pages/estudiantes/cursos/todosLosCursos", params: { year: yActual } }}
-                asChild
-              >
-                <Pressable style={st.primaryBtn}>
-                  <Text style={st.primaryBtnTxt}>Ver Materias de {s.nombre.split(" ")[0]}</Text>
-                </Pressable>
-              </Link>
-            )}
             <Link
               href={{ pathname: "/pages/estudiantes/detailEstudent", params: { year: yActual } }}
               asChild
@@ -169,23 +158,17 @@ const st = StyleSheet.create({
   miniLabel: { fontSize: 12, color: "#64748B", marginBottom: 4 },
   miniValue: { fontSize: 20, fontWeight: "800" },
 
-  primaryBtn: {
-    height: 44,
-    backgroundColor: "#0D47A1",
-    borderRadius: 12,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  primaryBtnTxt: { color: "#fff", fontWeight: "800" },
-
   secondaryBtn: {
     height: 44,
-    backgroundColor: "#E6F0FA",
+    backgroundColor: "#0D47A1",  // antes: "#E6F0FA"
     borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
   },
-  secondaryBtnTxt: { color: "#005A9C", fontWeight: "800" },
+  secondaryBtnTxt: {  
+    color: "#fff",               // antes: "#005A9C"
+    fontWeight: "800",
+  },
 
   notice: {
     backgroundColor: "#fff",

@@ -8,8 +8,9 @@ import {
   SafeAreaView,
   StatusBar,
   Platform,
+  BackHandler,
 } from "react-native";
-import { Link, useLocalSearchParams } from "expo-router";
+import { Link, useLocalSearchParams, router, type Href } from "expo-router";
 import data from "../../../../datosEstudiante.json";
 
 type Base = { id: string; fechaISO: string; fechaLarga: string; estado: string };
@@ -40,21 +41,51 @@ export default function DetalleAsistencia() {
   const registros = (c.asistencia ?? []) as AItem[];
   const reg = id ? registros.find(r => r.id === id) : undefined;
 
+  // Hardware Back: si hay id → volver a lista de asistencia; si no → volver al detalle del curso
+  React.useEffect(() => {
+    const onBack = () => {
+      if (id) {
+        router.replace({
+          pathname: "/pages/estudiantes/cursos/asistencia/detalleAsistencia",
+          params: { year: String(year), courseKey: String(courseKey) },
+        });
+        return true;
+      }
+      router.replace({
+        pathname: "/pages/estudiantes/cursos/detailCurso",
+        params: { year: String(year), courseKey: String(courseKey) },
+      });
+      return true;
+    };
+    const sub = BackHandler.addEventListener("hardwareBackPress", onBack);
+    return () => sub.remove();
+  }, [id, year, courseKey]);
+
+  // Href del botón back (mismo criterio que hardware back)
+  const backHref: Href = id
+    ? {
+        pathname: "/pages/estudiantes/cursos/asistencia/detalleAsistencia",
+        params: { year: String(year), courseKey: String(courseKey) },
+      }
+    : {
+        pathname: "/pages/estudiantes/cursos/detailCurso",
+        params: { year: String(year), courseKey: String(courseKey) },
+      };
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
+      {/* Header */}
       <View style={st.header}>
-        <Link
-          href={{ pathname: "/pages/estudiantes/cursos/detailCurso", params: { year, courseKey } }}
-          replace asChild
-        >
-          <Pressable style={st.backBtn} hitSlop={10}>
-            <Text style={st.backIcon}>←</Text>
+        <Link href={backHref} replace asChild>
+          <Pressable style={st.icon} hitSlop={10} accessibilityRole="button" accessibilityLabel="Regresar">
+            <Text style={st.iconTxt}>←</Text>
           </Pressable>
         </Link>
-        <Text style={st.title}>{id ? "Detalle de Inasistencia" : "Asistencia"}</Text>
-        <View style={{ width: 20 }} />
+        <Text style={st.title}>{id ? "Detalle de Inasistencia" : `Asistencia - ${c.nombre}`}</Text>
+        <View style={{ width: 56 }} />
       </View>
 
+      {/* Contenido */}
       {!id ? (
         <ScrollView contentContainerStyle={{ padding: 16, gap: 8 }}>
           {registros.map(r => (
@@ -62,9 +93,7 @@ export default function DetalleAsistencia() {
               <View style={{ flex: 1 }}>
                 <Text style={st.rowT}>
                   {r.fechaLarga ?? new Date(r.fechaISO).toLocaleDateString("es-EC", {
-                    day: "2-digit",
-                    month: "long",
-                    year: "numeric",
+                    day: "2-digit", month: "long", year: "numeric",
                   })}
                 </Text>
 
@@ -73,13 +102,11 @@ export default function DetalleAsistencia() {
                     href={{
                       pathname: "/pages/estudiantes/cursos/asistencia/detalleAsistencia",
                       params: { year: String(year), courseKey: String(courseKey), id: String(r.id) },
-                    }}
+                    } as Href}
                     replace
                     asChild
                   >
-                    <Pressable>
-                      <Text style={st.link}>Ver Detalles ▾</Text>
-                    </Pressable>
+                    <Pressable><Text style={st.link}>Ver Detalles ▾</Text></Pressable>
                   </Link>
                 )}
               </View>
@@ -127,15 +154,11 @@ const st = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 12,
-    backgroundColor: "#fff",
-    borderBottomWidth: 1,
-    borderBottomColor: "#E5E7EB",
+    backgroundColor: "#0D47A1",
   },
-
-  backBtn: { width: 56, height: 56, alignItems: "center", justifyContent: "center", marginLeft: -8 },
-  backIcon: { fontSize: 22, color: "#0F172A", fontWeight: "600" },
-
-  title: { fontSize: 18, fontWeight: "800", color: "#0F172A" },
+  icon: { width: 56, height: 48, alignItems: "center", justifyContent: "center" },
+  iconTxt: { color: "#fff", fontSize: 20, fontWeight: "800" },
+  title: { color: "#fff", fontWeight: "800", fontSize: 16 },
 
   row: {
     backgroundColor: "#fff",

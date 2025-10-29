@@ -1,4 +1,4 @@
-// app/login.tsx (ajusta la ruta si tu login vive en otra carpeta)
+// app/login.tsx
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Image } from 'expo-image';
@@ -12,184 +12,262 @@ import {
   StyleSheet,
   TextInput,
   View,
+  SafeAreaView,
+  StatusBar,
+  Text,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import datosPadre from './datosPadre.json';
+import { getPasswordOverride } from './authStore';
+
+const COLORS = {
+  primary: '#1173d4',
+  primaryHover: '#0e63b5',
+  bg: '#F0F9FF',
+  surface: '#FFFFFF',
+  text: '#0F172A',
+  border: '#E0F2FE',
+  placeholder: '#94A3B8',
+  icon: '#38BDF8',
+  subtext: '#64748B',
+};
+
+type PadreJSON = {
+  padre: {
+    id: string;
+    nombre: string;
+    cedula: string;
+    correo: string;
+    telefono: string;
+    avatar: string;
+    direccion: string;
+    credenciales: { usuario: string; password: string };
+  };
+};
 
 export default function LoginScreen() {
-  const [usuario, setUsuario] = useState('');
+  const [usuario, setUsuario] = useState(''); // puede ser usuario o cédula
   const [password, setPassword] = useState('');
   const [secure, setSecure] = useState(true);
 
   const handleLogin = () => {
-    const okU = datosPadre.padre.credenciales.usuario;
-    const okP = datosPadre.padre.credenciales.password;
-
     if (!usuario || !password) {
       Alert.alert('Faltan datos', 'Ingresa usuario y contraseña');
       return;
     }
-    if (usuario === okU && password === okP) {
-      router.replace('/(tabs)/home'); // redirige al Home/Tabs
+
+    const dp = datosPadre as PadreJSON;
+    const padre = dp?.padre;
+    if (!padre) {
+      Alert.alert('Error', 'Base de datos local no disponible.');
+      return;
+    }
+
+    // ¿Matchea por usuario o cédula?
+    const esEstePadre =
+      String(padre.credenciales?.usuario) === usuario || String(padre.cedula) === usuario;
+
+    if (!esEstePadre) {
+      Alert.alert('No encontrado', 'No existe una cuenta con ese usuario/identificación.');
+      return;
+    }
+
+    // password final = override en memoria (si existiera) o la del JSON
+    const override = getPasswordOverride(usuario);
+    const jsonPass = padre.credenciales?.password ?? '';
+    const okPass = override ?? jsonPass;
+
+    if (password === okPass) {
+      router.replace('/(tabs)/home');
     } else {
-      Alert.alert('Credenciales inválidas', 'Revisa tu usuario/contraseña');
+      // También probamos si el override se guardó usando la cédula como clave
+      const overrideCed = getPasswordOverride(padre.cedula);
+      const finalPass = overrideCed ?? okPass;
+      if (password === finalPass) {
+        router.replace('/(tabs)/home');
+      } else {
+        Alert.alert('Credenciales inválidas', 'Revisa tu usuario/contraseña');
+      }
     }
   };
 
   const handleForgot = () => {
-    Alert.alert('Recuperación de cuenta', 'Este flujo se implementará más adelante.');
+    router.push('/recuperar');
   };
 
+  const statusBarHeight = Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0;
+
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1, backgroundColor: '#F6F7F8' }}
-      behavior={Platform.select({ ios: 'padding', android: undefined })}
-    >
-      <ThemedView style={st.container}>
-        {/* Logo */}
-        <Image
-          source={require('@/assets/images/educonnect-logo.png')}
-          style={st.logo}
-          accessibilityLabel="Logo EduConnect"
-        />
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.bg, paddingTop: statusBarHeight }}>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.select({ ios: 'padding', android: undefined })}
+      >
+        <View style={st.wrapper}>
+          <View style={st.card}>
+            <View style={st.cardHeader}>
+              <Image
+                source={require('@/assets/images/educonnect-logo.png')}
+                style={st.logo}
+                accessibilityLabel="Logo EduConnect"
+              />
+            </View>
 
-        {/* Título */}
-        <View style={{ alignItems: 'center', marginBottom: 12 }}>
-          <ThemedText type="title" style={st.title}>Bienvenido</ThemedText>
-          <ThemedText style={st.subtitle}>Inicia sesión para continuar</ThemedText>
+            <View style={st.cardBody}>
+              <View style={{ alignItems: 'center', marginBottom: 10 }}>
+                <Text style={st.title}>Bienvenido</Text>
+                <Text style={st.subtitle}>Inicia sesión para continuar</Text>
+              </View>
+
+              <View style={{ gap: 14 }}>
+                <View style={st.inputWrap}>
+                  <Ionicons name="person-outline" size={26} color={COLORS.icon} style={st.inputIcon} />
+                  <TextInput
+                    style={st.input}
+                    placeholder="Usuario / Cédula"
+                    placeholderTextColor={COLORS.placeholder}
+                    keyboardType="default"
+                    value={usuario}
+                    onChangeText={(t) => setUsuario(t.replace(/\s+/g, ''))}
+                    autoCapitalize="none"
+                    returnKeyType="next"
+                  />
+                </View>
+
+                <View style={st.inputWrap}>
+                  <Ionicons name="lock-closed-outline" size={26} color={COLORS.icon} style={st.inputIcon} />
+                  <TextInput
+                    style={st.input}
+                    placeholder="Contraseña"
+                    placeholderTextColor={COLORS.placeholder}
+                    value={password}
+                    onChangeText={setPassword}
+                    secureTextEntry={secure}
+                    returnKeyType="done"
+                    onSubmitEditing={handleLogin}
+                  />
+                  <Pressable
+                    onPress={() => setSecure((s) => !s)}
+                    style={st.trailingIconBtn}
+                    hitSlop={8}
+                    accessibilityRole="button"
+                    accessibilityLabel={secure ? 'Mostrar contraseña' : 'Ocultar contraseña'}
+                  >
+                    <Ionicons name={secure ? 'eye-off-outline' : 'eye-outline'} size={22} color={COLORS.subtext} />
+                  </Pressable>
+                </View>
+
+                <Pressable
+                  style={({ pressed }) => [st.loginBtn, pressed && { backgroundColor: COLORS.primaryHover }]}
+                  onPress={handleLogin}
+                >
+                  <Text style={st.loginBtnTxt}>Iniciar Sesión</Text>
+                </Pressable>
+
+                <Pressable onPress={handleForgot} style={st.forgotBtn}>
+                  <Text style={st.forgotTxt}>¿Olvidaste tu contraseña?</Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>
         </View>
 
-        {/* Usuario */}
-        <View style={st.inputWrap}>
-          <Ionicons name="person-outline" size={20} color="#94A3B8" style={st.inputIcon} />
-          <TextInput
-            style={[st.input, { paddingLeft: 44 }]}
-            placeholder="Usuario (cédula)"
-            placeholderTextColor="#94A3B8"
-            keyboardType="numeric"
-            value={usuario}
-            onChangeText={setUsuario}
-            autoCapitalize="none"
-            returnKeyType="next"
-          />
-        </View>
-
-        {/* Contraseña */}
-        <View style={st.inputWrap}>
-          <Ionicons name="lock-closed-outline" size={20} color="#94A3B8" style={st.inputIcon} />
-          <TextInput
-            style={[st.input, { paddingLeft: 44, paddingRight: 44 }]}
-            placeholder="Contraseña"
-            placeholderTextColor="#94A3B8"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={secure}
-            returnKeyType="done"
-            onSubmitEditing={handleLogin}
-          />
-          <Pressable
-            onPress={() => setSecure((s) => !s)}
-            style={st.trailingIconBtn}
-            hitSlop={8}
-            accessibilityRole="button"
-            accessibilityLabel={secure ? 'Mostrar contraseña' : 'Ocultar contraseña'}
-          >
-            <Ionicons
-              name={secure ? 'eye-off-outline' : 'eye-outline'}
-              size={20}
-              color="#64748B"
-            />
-          </Pressable>
-        </View>
-
-        {/* Botón Login */}
-        <Pressable style={st.loginBtn} onPress={handleLogin}>
-          <ThemedText type="defaultSemiBold" style={st.loginBtnTxt}>
-            Iniciar sesión
-          </ThemedText>
-        </Pressable>
-
-        {/* Forgot password */}
-        <Pressable onPress={handleForgot} style={st.forgotBtn}>
-          <ThemedText style={st.forgotTxt}>¿Olvidaste tu contraseña?</ThemedText>
-        </Pressable>
-      </ThemedView>
-    </KeyboardAvoidingView>
+        <ThemedView />
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 
 const st = StyleSheet.create({
-  container: {
+  wrapper: {
     flex: 1,
-    backgroundColor: '#F6F7F8', // fondo claro fijo
-    paddingHorizontal: 24,
-    paddingTop: 36,
+    backgroundColor: COLORS.bg,
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    justifyContent: 'center',
+  },
+  card: {
+    backgroundColor: COLORS.surface,
+    borderRadius: 24,
+    overflow: 'hidden',
+    borderWidth: 2,
+    borderColor: COLORS.border,
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 6,
+  },
+  cardHeader: {
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 24,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   logo: {
-    height: 120,
-    width: 120,
+    height: 96,
+    width: 96,
     resizeMode: 'contain',
-    marginBottom: 8,
+  },
+  cardBody: {
+    paddingHorizontal: 20,
+    paddingVertical: 20,
   },
   title: {
-    color: '#0F172A',
-    fontSize: 26,
+    color: COLORS.text,
+    fontSize: 28,
     fontWeight: '800',
+    textAlign: 'center',
   },
   subtitle: {
-    color: '#64748B',
-    marginTop: 2,
+    color: COLORS.subtext,
+    textAlign: 'center',
+    marginTop: 4,
   },
-  inputWrap: {
-    width: '100%',
-    marginTop: 12,
-  },
+  inputWrap: { position: 'relative', width: '100%' },
   inputIcon: {
     position: 'absolute',
-    left: 14,
-    top: 0,
-    bottom: 0,
-    textAlignVertical: 'center',
-    height: 48,
-    lineHeight: 48,
+    left: 16,
+    top: '50%',
+    marginTop: -13,
+  },
+  input: {
+    width: '100%',
+    height: 64,
+    backgroundColor: '#F0F9FF',
+    color: COLORS.text,
+    borderRadius: 12,
+    paddingLeft: 56,
+    paddingRight: 48,
+    fontSize: 16,
+    borderWidth: 2,
+    borderColor: COLORS.border,
   },
   trailingIconBtn: {
     position: 'absolute',
     right: 12,
     top: 0,
     bottom: 0,
-    height: 48,
+    height: 64,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 6,
   },
-  input: {
-    width: '100%',
-    height: 48,
-    backgroundColor: '#FFFFFF',
-    color: '#0F172A',
-    borderRadius: 12,
-    paddingHorizontal: 16,
-    fontSize: 16,
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
-  },
   loginBtn: {
-    backgroundColor: '#1173d4',
+    backgroundColor: COLORS.primary,
     width: '100%',
-    height: 50,
+    height: 64,
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 16,
-    shadowColor: '#1173d4',
-    shadowOffset: { width: 0, height: 2 },
+    marginTop: 4,
+    shadowColor: COLORS.primary,
+    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 4,
+    shadowRadius: 8,
+    elevation: 5,
   },
-  loginBtnTxt: { color: '#fff', fontSize: 16, fontWeight: '800' },
-  forgotBtn: { marginTop: 14 },
-  forgotTxt: { color: '#1173d4', fontSize: 14, fontWeight: '700' },
+  loginBtnTxt: { color: '#fff', fontSize: 18, fontWeight: '800' },
+  forgotBtn: { marginTop: 10, alignSelf: 'center' },
+  forgotTxt: { color: '#0369A1', fontSize: 14, fontWeight: '700' },
 });
