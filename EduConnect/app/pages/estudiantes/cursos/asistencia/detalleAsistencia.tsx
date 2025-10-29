@@ -45,7 +45,7 @@ export default function DetalleAsistencia() {
       <View style={st.header}>
         <Link
           href={{ pathname: "/pages/estudiantes/cursos/detailCurso", params: { year, courseKey } }}
-          asChild
+          replace asChild
         >
           <Pressable style={st.backBtn} hitSlop={10}>
             <Text style={st.backIcon}>←</Text>
@@ -72,11 +72,14 @@ export default function DetalleAsistencia() {
                   <Link
                     href={{
                       pathname: "/pages/estudiantes/cursos/asistencia/detalleAsistencia",
-                      params: { year, courseKey, id: r.id },
+                      params: { year: String(year), courseKey: String(courseKey), id: String(r.id) },
                     }}
+                    replace
                     asChild
                   >
-                    <Pressable><Text style={st.link}>Ver Detalles ▾</Text></Pressable>
+                    <Pressable>
+                      <Text style={st.link}>Ver Detalles ▾</Text>
+                    </Pressable>
                   </Link>
                 )}
               </View>

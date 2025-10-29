@@ -51,8 +51,9 @@ export default function DetailNotificaciones() {
         <Link
           href={{
             pathname: "/pages/estudiantes/cursos/detailCurso",
-            params: { year, courseKey },
+            params: { year: String(year), courseKey: String(courseKey) },
           }}
+          replace
           asChild
         >
           <Pressable style={st.icon}>

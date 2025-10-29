@@ -24,7 +24,7 @@ export default function DetailStudent() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
       <View style={st.header}>
-        <Link href="/(tabs)/home" asChild>
+        <Link href="/(tabs)/home" replace  asChild>
           <Pressable style={st.icon}>
             <Text style={st.iconTxt}>←</Text>
           </Pressable>
@@ -41,15 +41,18 @@ export default function DetailStudent() {
               <Text style={st.year}>{a.anioLectivo}</Text>
               <Text style={st.range}>{a.rango}</Text>
             </View>
-
-            <Link
-              href={{ pathname: "/pages/estudiantes/cursos/todosLosCursos", params: { year: a.anioLectivo } }}
-              asChild
-            >
-              <Pressable style={st.btn}>
-                <Text style={st.btnTxt}>Ver cursos</Text>
-              </Pressable>
-            </Link>
+              <Link
+                href={{
+                  pathname: "/pages/estudiantes/cursos/todosLosCursos",
+                  params: { year: String(a.anioLectivo) },
+                }}
+                replace
+                asChild
+              >
+                <Pressable style={st.btn}>
+                  <Text style={st.btnTxt}>Ver cursos</Text>
+                </Pressable>
+              </Link>
           </View>
         ))}
       </ScrollView>

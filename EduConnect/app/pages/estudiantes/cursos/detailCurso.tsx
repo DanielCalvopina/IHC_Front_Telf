@@ -43,19 +43,20 @@ export default function DetailCurso() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
       <View style={st.header}>
-        <Link
-          href={{ pathname: "/pages/estudiantes/cursos/todosLosCursos", params: { year } }}
-          asChild
-        >
-          <Pressable
-            style={st.icon}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            accessibilityRole="button"
-            accessibilityLabel="Regresar"
+          <Link
+            href={{ pathname: "/pages/estudiantes/cursos/todosLosCursos", params: { year: String(year) } }}
+            replace
+            asChild
           >
-            <Text style={st.iconTxt}>←</Text>
-          </Pressable>
-        </Link>
+            <Pressable
+              style={st.icon}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              accessibilityRole="button"
+              accessibilityLabel="Regresar"
+            >
+              <Text style={st.iconTxt}>←</Text>
+            </Pressable>
+          </Link>
         <Text style={st.title}>{c.detalleTitulo || c.nombre}</Text>
         <View style={{ width: 56 }} />
       </View>
@@ -148,14 +149,16 @@ export default function DetailCurso() {
             <Link
               href={{
                 pathname: "/pages/estudiantes/cursos/asistencia/detalleAsistencia",
-                params: { year, courseKey },
+                params: { year: String(year), courseKey: String(courseKey) },
               }}
+              replace
               asChild
             >
               <Pressable style={st.secondary}>
                 <Text style={st.secondaryTxt}>Ver lista / detalles</Text>
               </Pressable>
             </Link>
+
           </View>
         </View>
       </ScrollView>

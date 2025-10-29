@@ -34,7 +34,8 @@ export default function TodosLosCursos() {
     <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
       <View style={st.header}>
         <Link
-          href={{ pathname: "/pages/estudiantes/detailEstudent", params: { year } }}
+          href={{ pathname: "/pages/estudiantes/detailEstudent", params: { year: String(year) } }}
+          replace
           asChild
         >
           <Pressable
@@ -57,8 +58,9 @@ export default function TodosLosCursos() {
             <Link
               href={{
                 pathname: "/pages/estudiantes/cursos/detailCurso",
-                params: { year, courseKey: c.key },
+                params: { year: String(year), courseKey: String(c.key) },
               }}
+              replace
               asChild
             >
               <Pressable style={st.go}>
