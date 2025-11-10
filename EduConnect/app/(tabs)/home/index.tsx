@@ -9,6 +9,7 @@ import {
   SafeAreaView,
   StatusBar,
   Platform,
+  useColorScheme, // 1. Importar el hook para detectar el tema
 } from "react-native";
 import { Link } from "expo-router";
 import data from "../../datosEstudiante.json";
@@ -20,7 +21,45 @@ import data from "../../datosEstudiante.json";
  * - Anuncios generales (mock corto)
  */
 
+// 2. Definir las paletas de colores para ambos modos
+const Colors = {
+  light: {
+    background: "#F6F7F8",
+    card: "#fff",
+    cardBorder: "#E2E8F0",
+    textPrimary: "#0F172A",
+    textSecondary: "#64748B",
+    textTertiary: "#334155",
+    buttonSecondaryBg: "#0D47A1",
+    buttonSecondaryText: "#fff",
+    miniGradeBg: "#F8FAFC",
+    miniGradeBorder: "#E2E8F0",
+    noticeIconBg: "#DBEAFE",
+    noticeIconText: "#1d4ed8",
+    noticeBody: "#475569",
+  },
+  dark: {
+    background: "#1E293B", // Azul oscuro
+    card: "#334155", // Azul-gris
+    cardBorder: "#475569",
+    textPrimary: "#F1F5F9", // Blanco-hueso
+    textSecondary: "#94A3B8", // Gris claro
+    textTertiary: "#E2E8F0",
+    buttonSecondaryBg: "#3B82F6", // Azul más brillante
+    buttonSecondaryText: "#fff",
+    miniGradeBg: "#475569",
+    miniGradeBorder: "#64748B",
+    noticeIconBg: "#1E3A8A", // Azul más oscuro
+    noticeIconText: "#BFDBFE", // Azul pálido
+    noticeBody: "#CBD5E1",
+  },
+};
+
 export default function HomeScreen() {
+  const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === "dark";
+  const theme = isDarkMode ? Colors.dark : Colors.light;
+
   const s = data.student;
   const yActual = s.cursoActual?.anioLectivo;
   const yData = data.aniosLectivos.find((y) => y.anioLectivo === yActual);
@@ -36,9 +75,9 @@ export default function HomeScreen() {
   }, [yData]);
 
   const colorByScore = (n: number) => {
-    if (n >= 9) return { color: "#16A34A" };
-    if (n >= 7) return { color: "#F59E0B" };
-    return { color: "#EF4444" };
+    if (n >= 9) return { color: "#16A34A" }; // Verde (se mantiene)
+    if (n >= 7) return { color: "#F59E0B" }; // Ámbar (se mantiene)
+    return { color: "#EF4444" }; // Rojo (se mantiene)
   };
 
   const anuncios = [
@@ -48,8 +87,120 @@ export default function HomeScreen() {
 
   const statusBarHeight = Platform.OS === "android" ? StatusBar.currentHeight ?? 0 : 0;
 
+  // 3. Mover los estilos adentro y usar useMemo para hacerlos dinámicos
+  const st = useMemo(() => StyleSheet.create({
+    safeArea: {
+      flex: 1,
+      backgroundColor: theme.background, // Dinámico
+      paddingTop: statusBarHeight,
+    },
+    sectionTitle: { 
+      color: theme.textPrimary, // Dinámico
+      fontWeight: "800", 
+      fontSize: 16 
+    },
+    card: {
+      backgroundColor: theme.card, // Dinámico
+      borderRadius: 14,
+      borderWidth: 1,
+      borderColor: theme.cardBorder, // Dinámico
+      padding: 12,
+      shadowColor: "#000",
+      shadowOpacity: isDarkMode ? 0.1 : 0.05, // Ajuste sutil
+      shadowRadius: 6,
+      shadowOffset: { width: 0, height: 3 },
+    },
+    childAvatar: { 
+      width: 44, 
+      height: 44, 
+      borderRadius: 999, 
+      backgroundColor: theme.miniGradeBorder // Dinámico
+    },
+    childName: { 
+      fontWeight: "800", 
+      color: theme.textPrimary // Dinámico
+    },
+    childSub: { 
+      color: theme.textSecondary, // Dinámico
+      marginTop: 2 
+    },
+    blockTitle: { 
+      color: theme.textTertiary, // Dinámico
+      fontWeight: "800", 
+      marginTop: 4 
+    },
+    miniGrade: {
+      width: 116,
+      backgroundColor: theme.miniGradeBg, // Dinámico
+      borderWidth: 1,
+      borderColor: theme.miniGradeBorder, // Dinámico
+      borderRadius: 12,
+      paddingHorizontal: 10,
+      paddingVertical: 8,
+      alignItems: "center",
+    },
+    miniLabel: { 
+      fontSize: 12, 
+      color: theme.textSecondary, // Dinámico
+      marginBottom: 4 
+    },
+    miniValue: { 
+      fontSize: 20, 
+      fontWeight: "800" 
+    },
+    secondaryBtn: {
+      height: 44,
+      backgroundColor: theme.buttonSecondaryBg, // Dinámico
+      borderRadius: 12,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    secondaryBtnTxt: {  
+      color: theme.buttonSecondaryText, // Dinámico
+      fontWeight: "800",
+    },
+    notice: {
+      backgroundColor: theme.card, // Dinámico
+      borderRadius: 14,
+      borderWidth: 1,
+      borderColor: theme.cardBorder, // Dinámico
+      padding: 10,
+      gap: 10,
+    },
+    noticeRow: { 
+      flexDirection: "row", 
+      gap: 10, 
+      alignItems: "center" 
+    },
+    noticeIcon: {
+      width: 36, height: 36, borderRadius: 999,
+      alignItems: "center", justifyContent: "center",
+      backgroundColor: theme.noticeIconBg, // Dinámico
+    },
+    noticeIconText: { // Estilo para el emoji
+      color: theme.noticeIconText, // Dinámico
+    },
+    noticeTitle: { 
+      fontWeight: "800", 
+      color: theme.textPrimary // Dinámico
+    },
+    noticeBody: { 
+      color: theme.noticeBody, // Dinámico
+      marginTop: 2, 
+      fontSize: 13 
+    },
+    noDataText: { // Estilo para el texto "sin calificaciones"
+      color: theme.textSecondary // Dinámico
+    }
+  }), [isDarkMode, theme, statusBarHeight]); // Dependencias del useMemo
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#F6F7F8", paddingTop: statusBarHeight }}>
+    <SafeAreaView style={st.safeArea}>
+      {/* 4. Barra de estado dinámica */}
+      <StatusBar 
+        barStyle={isDarkMode ? "light-content" : "dark-content"} 
+        backgroundColor={theme.background}
+      />
       <ScrollView contentContainerStyle={{ padding: 14, gap: 14 }}>
         {/* Mis Hijos */}
         <View style={st.card}>
@@ -77,7 +228,7 @@ export default function HomeScreen() {
               </View>
             ))}
             {notasRecientes.length === 0 && (
-              <Text style={{ color: "#64748B" }}>Sin calificaciones registradas.</Text>
+              <Text style={st.noDataText}>Sin calificaciones registradas.</Text>
             )}
           </ScrollView>
 
@@ -99,7 +250,9 @@ export default function HomeScreen() {
         <View style={st.notice}>
           {anuncios.map((a) => (
             <View key={a.id} style={st.noticeRow}>
-              <View style={st.noticeIcon}><Text style={{ color: "#1d4ed8" }}>ℹ️</Text></View>
+              <View style={st.noticeIcon}>
+                <Text style={st.noticeIconText}>ℹ️</Text>
+              </View>
               <View style={{ flex: 1 }}>
                 <Text style={st.noticeTitle}>{a.titulo}</Text>
                 <Text style={st.noticeBody}>{a.cuerpo}</Text>
@@ -112,78 +265,4 @@ export default function HomeScreen() {
   );
 }
 
-/* === estilos === */
-const st = StyleSheet.create({
-  topbar: {
-    height: 56,
-    backgroundColor: "#FFFFFF",
-    borderBottomWidth: 1,
-    borderBottomColor: "#E5E7EB",
-    paddingHorizontal: 14,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  topbarTitle: { fontWeight: "800", color: "#0F172A", fontSize: 16 },
-
-  sectionTitle: { color: "#0F172A", fontWeight: "800", fontSize: 16 },
-
-  card: {
-    backgroundColor: "#fff",
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: "#E2E8F0",
-    padding: 12,
-    shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowRadius: 6,
-    shadowOffset: { width: 0, height: 3 },
-  },
-  childAvatar: { width: 44, height: 44, borderRadius: 999, backgroundColor: "#E5E7EB" },
-  childName: { fontWeight: "800", color: "#0F172A" },
-  childSub: { color: "#64748B", marginTop: 2 },
-
-  blockTitle: { color: "#334155", fontWeight: "800", marginTop: 4 },
-
-  miniGrade: {
-    width: 116,
-    backgroundColor: "#F8FAFC",
-    borderWidth: 1,
-    borderColor: "#E2E8F0",
-    borderRadius: 12,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    alignItems: "center",
-  },
-  miniLabel: { fontSize: 12, color: "#64748B", marginBottom: 4 },
-  miniValue: { fontSize: 20, fontWeight: "800" },
-
-  secondaryBtn: {
-    height: 44,
-    backgroundColor: "#0D47A1",  // antes: "#E6F0FA"
-    borderRadius: 12,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  secondaryBtnTxt: {  
-    color: "#fff",               // antes: "#005A9C"
-    fontWeight: "800",
-  },
-
-  notice: {
-    backgroundColor: "#fff",
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: "#E2E8F0",
-    padding: 10,
-    gap: 10,
-  },
-  noticeRow: { flexDirection: "row", gap: 10, alignItems: "center" },
-  noticeIcon: {
-    width: 36, height: 36, borderRadius: 999,
-    alignItems: "center", justifyContent: "center",
-    backgroundColor: "#DBEAFE",
-  },
-  noticeTitle: { fontWeight: "800", color: "#0F172A" },
-  noticeBody: { color: "#475569", marginTop: 2, fontSize: 13 },
-});
+// Ya no necesitamos el StyleSheet.create estático aquí abajo
